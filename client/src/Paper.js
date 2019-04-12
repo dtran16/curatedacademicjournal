@@ -18,4 +18,5 @@ class Paper {
         this.prevID = prevID;
         this.lastID = lastID;
     }
+
 }
