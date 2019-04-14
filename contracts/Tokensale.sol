@@ -16,7 +16,7 @@ import "./SafeMath.sol";
  * the methods to add functionality. Consider using 'super' where appropriate to concatenate
  * behavior.
  */
-contract Crowdsale is ReentrancyGuard {
+contract Crowdsale {
     using SafeMath for uint256;
 
     // The token being sold
@@ -155,7 +155,7 @@ contract Crowdsale is ReentrancyGuard {
      * @param tokenAmount Number of tokens to be emitted
      */
     function _deliverTokens(address beneficiary, uint256 tokenAmount) internal {
-        _token.safeTransfer(beneficiary, tokenAmount);
+        _token.transfer(beneficiary, tokenAmount);
     }
 
     /**
