@@ -15,7 +15,15 @@ class contractHelper {
     //getter and setter methods 
     static getPaper() {
         this.archiveCcontract.methods.getBook().call().then((result) => {
-            return result;
+            return new Paper(result[0],
+                            result[1],
+                            result[2],
+                            result[3],
+                            result[4],
+                            result[5],
+                            result[6],
+                            result[7],
+                            result[8]);
         })
     }
 
