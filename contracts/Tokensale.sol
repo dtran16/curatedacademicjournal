@@ -105,7 +105,7 @@ contract Crowdsale {
      * another `nonReentrant` function.
      * @param beneficiary Recipient of the token purchase
      */
-    function buyTokens(address beneficiary) public nonReentrant payable {
+    function buyTokens(address beneficiary) public payable {
         uint256 weiAmount = msg.value;
         _preValidatePurchase(beneficiary, weiAmount);
 
