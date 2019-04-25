@@ -1,18 +1,27 @@
+import TokenContract from "./contracts/Tokensale.json";
+import SaleContract from "./contracts/Tokensale.json";
+import ReviewContract from "./contracts/Review.json";
+
 var http = require('http');
 var Web3 = require("web3");
 
 class contractHelper {
 
     web3 = new Web3("endpoint");
-    archiveContract = new web3.eth.Contract(['abi'], 'address', {
+    archiveContract = new web3.eth.Contract(ReviewContract.abi, 'address', {
         //defaults
     });
-    tokenContract = new web3.eth.Contract(['abi'], 'address', {
+    tokenContract = new web3.eth.Contract(TokenContract.abi, 'address', {
         //defaults
     });
-    
+    saleContract = new web3.eth.Contract(SaleContract.abi, 'address', {
+        //defaults
+    });
 
-    //getter and setter methods 
+    static purchase() {
+        saleContract.methods.buyTokens();
+    }
+    //getter and setter methods
     static getPaper() {
         this.archiveCcontract.methods.getBook().call().then((result) => {
             return new Paper(result[0],
@@ -36,7 +45,7 @@ class contractHelper {
     //     this.contract.methods.getLimit().call().then((result) => {
     //         return result;
     //     })
-    // }  
+    // }
 
     // isReady(_id) {
     //     this.contract.methods.isReady(_id).call().then((result) => {
