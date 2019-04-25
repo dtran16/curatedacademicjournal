@@ -17,6 +17,11 @@ contract CAJToken is IERC20 {
     // Balances for each type of account
     mapping(address => uint256) private balances;
     mapping(uint256 => uint256) private paperBalances;
+
+    //tokens staked on each paper by each user
+    mapping(uint256 => mapping(address => uint256)) private userTokensStaked;
+
+    //dev address
     address private devAddress;
 
     //paper database contract
@@ -123,12 +128,14 @@ contract CAJToken is IERC20 {
         return true;
     }
 
+    //mapping(uint256 => mapping(address => uint256)) private userTokensStaked;
     //Stake a token on a paper, this will be called from the other contract
-    function stakeToken(address _from, uint256 _to, uint256 _amount) external returns (bool success) {
+    function stakeTokens(address _from, uint256 _to, uint256 _amount) external returns (bool success) {
         if (userCanSend(_from, _amount) && paperCanRecive(_to, _amount)
             && msg.sender == archive.address) {
             balances[_from] = balances[_from].sub(_amount);
             paperBalances[_to] = paperBalances[_to].add(_amount);
+            userTokensStaked[_to][_from] += _amount;
             emit Transfer(msg.sender, _to, _amount); 
             return true;
         } else {
@@ -137,9 +144,13 @@ contract CAJToken is IERC20 {
     }
 
     //Collect a token from a paper, this will also be run from the other contract
-    function collectToken(uint256 _from, address _to, uint256 _amount) external  returns (bool success) {
+    function collectTokens(uint256 _from, address _to, uint256 _amount) external  returns (bool success) {
         if (userCanRecive(_to, _amount) && paperCanSend(_from, _amount)
             && msg.sender == archive.address) {
+            if (archive.getPaper(_paper)[8] == 4 || archive.getPaper(_paper)[8] == 5 || archive.getPaper(_paper)[8] == 3) {
+                assert(_amount < userTokensStaked[_paper]);
+                userTokensStaked[_from][_to] -= _amount
+            }
             paperBalances[_from] = paperBalances[_from].sub(_amount);
             balances[_to] = balances[_to].add(_amount);
             return true;
@@ -148,20 +159,26 @@ contract CAJToken is IERC20 {
         }
     }
 
-    //Transfer Tokens from paper to paper, this will be run fromt the other smart contract
-    function transferPapers(uint256 _from, uint256 _to, uint256 _amount) external  returns (bool success) {
-        if (paperCanRecive(_to, _amount) && paperCanSend(_from, _amount)
-            && msg.sender == archive.address) {
-            paperBalances[_from] = paperBalances[_from].sub(_amount);
-            paperBalances[_to] = paperBalances[_to].add(_amount);
-            return true;
-        } else {
-            return false;
-        }
-    }
+
+
+    // //Transfer Tokens from paper to paper, this will be run fromt the other smart contract
+    // function transferPapers(uint256 _from, uint256 _to, uint256 _amount) external  returns (bool success) {
+    //     if (paperCanRecive(_to, _amount) && paperCanSend(_from, _amount)
+    //         && msg.sender == archive.address) {
+    //         paperBalances[_from] = paperBalances[_from].sub(_amount);
+    //         paperBalances[_to] = paperBalances[_to].add(_amount);
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 
     //Return the balance of a paper account
     function paperBalance(uint256 _paperID) public returns (uint256 balance) {
         return paperBalances[_paperID];
+    }
+
+    function tokensStakedByUser(uint256 _paperID, address _user) returns (uint256 amount) {
+        return userTokensStaked[_paperID][_user];
     }
 }
