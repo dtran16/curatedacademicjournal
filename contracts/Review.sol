@@ -1,9 +1,9 @@
-pragma  0.5.0;
+pragma solidity 0.5.0;
 pragma experimental ABIEncoderV2;
 import "./CAJCoin.sol";
 
 contract Review {
-    
+
     //token contract
     CAJCoin tokenContract;
 
@@ -21,7 +21,7 @@ contract Review {
         string[] tags;
         //comments
         string[] comments;
-        //uploader of paper
+        // addr uploader of paper
         address author;
         //name of author & creds
         string authorNameCreds;
@@ -39,7 +39,7 @@ contract Review {
         uint reviewerScore;
         //date
         uint256 date;
-    
+
     }
 
     // paper ids to paper objects
@@ -50,20 +50,20 @@ contract Review {
 
     //constant
     uint256 NUMBER_OF_REVIEWERS = 15;
-    
+
     //mapping of an address to the topics the verified user is allowed to review
     mapping(address => string[]) allowedReviewerTopics;
-    
+
     //mapping of reviewers currently reviewing a paper
     mapping(uint256 => address[]) private reviewersForPaper;
-    
+
     //track if reviewers and users have alreayd voted on a paper
     mapping(uint256 => mapping(address => bool)) private reviewerHasVoted;
     mapping(uint256 => mapping(address => bool)) private userHasVoted;
-    
+
     //next id to be assigned
-    uint256 private currentId; 
-    
+    uint256 private currentId;
+
     // constructor
     constructor() public {//(uint threshold) public {
         // 0 is used as a null value for ids
@@ -83,10 +83,10 @@ contract Review {
     }
 
     // add a new paper with the specified fields
-    function addPaper(string memory _title, string memory _location, string[] memory _tags, string memory _authorNameCreds, uint256 _prevID) public returns (bool success) { 
+    function addPaper(string memory _title, string memory _location, string[] memory _tags, string memory _authorNameCreds, uint256 _prevID) public returns (bool success) {
         if (_prevID == 0 ||
             (msg.sender == papers[_prevID].author) && papers[_prevID].state < 3) {
-                papers[currentId] = Paper(currentId, _location, _title, _tags, new string[](0), msg.sender, _authorNameCreds, 0, _prevID, 0, 0, 0, 0, 0, block.timestamp);
+                papers[currentId] = Paper(currentId, _location, _title, _tags, new string[](0), msg.sender, _authorNameCreds, _prevID, 0, 0, 0, 0, 0, 0, block.timestamp);
                 if (_prevID != 0) {
                     papers[_prevID].nextId = currentId;
                     papers[currentId].state = papers[_prevID].state;
@@ -99,8 +99,9 @@ contract Review {
     }
 
     //getter methods for papers
-    function getPaperTitle(uint256 _id) public returns (string memory title) {
-        title = papers[_id].title;
+    function getPaperTitle(uint256 _id) public returns (string memory) {
+        string memory title = papers[_id].title;
+        return title;
     }
 
     function getPaperLocation(uint256 _id) public returns (string memory location) {
@@ -154,9 +155,11 @@ contract Review {
         assert(verifiedUsers[msg.sender]);
         //check for tags, and if they match, add the user and return true
         //if this would reach the limit, change the state of the paper as well
-        for (uint i = 0; i < allowedReviewerTopics[msg.sender].length; i++) {
-            for (uint j = 0; j < papers[_id].tags.length; i++) {
-                if (i == j) {
+        let topics = allowedReviewerTopics[msg.sender];
+        let tags = papers[_id].tags
+        for (uint i = 0; i < topics.length; i++) {
+            for (uint j = 0; j < tags.length; i++) {
+                if (topics[i] == tags[j]) {
                     reviewersForPaper[_id].push(msg.sender);
                     if (reviewersForPaper[_id].length == NUMBER_OF_REVIEWERS) {
                         papers[_id].state = 2;
@@ -165,7 +168,7 @@ contract Review {
                 }
             }
         }
-        return false;   
+        return false;
     }
 
     //comment on papers
@@ -187,7 +190,7 @@ contract Review {
                 } else {
                     papers[_id].comments.push(_comment);
                     return true;
-                } 
+                }
             } else {
                 papers[_id].comments.push(_comment);
             }
@@ -260,8 +263,8 @@ contract Review {
             for (uint i = 0; i < reviewers.length; i++) {
                 tokenContract.collectTokens(_id, reviewers[i], amountToDistriute);
             }
-        } 
-        return true;   
+        }
+        return true;
     }
 
     //userVoteOnPaper
@@ -280,7 +283,7 @@ contract Review {
         assert(papers[_id].state == 0);
         assert(_amount >= 1);
         success = tokenContract.stakeTokens(msg.sender, _id, _amount);
-        
+
     }
 
     //revokes all of a user's tokens from an old revision of a paper
