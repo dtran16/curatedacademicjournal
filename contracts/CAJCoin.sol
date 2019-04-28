@@ -100,8 +100,13 @@ contract CAJCoin {
     // Transfer the balance from owner's account to another account
     function transfer(address _to, uint256 _amount) public  returns (bool success) {
         if (userCanSend(msg.sender, _amount) && userCanRecive(_to, _amount)) {
+<<<<<<< HEAD
             balances[msg.sender] = balances[msg.sender].sub(_amount);
             balances[_to] = balances[_to].add(_amount);
+=======
+            balances[msg.sender] = balances[msg.sender] - _amount; //.sub(_amount);
+            balances[_to] = balances[_to] + _amount; //.add(_amount);
+>>>>>>> TestToken
             emit Transfer(msg.sender, _to, _amount); 
             return true;
         } else {
