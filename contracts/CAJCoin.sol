@@ -50,7 +50,7 @@ contract CAJCoin {
 
     function userCanRecive(address _user, uint256 _amount) private returns (bool success) {
         bool b = _amount > 0;
-        b = b && add(balances[_user], _amount) > balances[_user]; //can directly call SafeMath's methods on uint256 vars and pass in second param
+        b = b && (balances[_user]).add(_amount) > balances[_user];
         return b;
     }
 
@@ -64,7 +64,7 @@ contract CAJCoin {
     function paperCanSend(uint256 _paper, uint256 _amount) private returns (bool success) {
         bool b = _amount > 0;
         b = b && archive.paperExists(_paper);
-        b = b && archive.getPaperState(_paper) == 2 || archive.getPaperState(_paper) == 4; //2: under review; 4: old version 
+        b = b && archive.getPaperState(_paper) == 2 || archive.getPaperState(_paper) == 4; // 2: under review; 4: old version 
         b = b && paperBalances[_paper] >= _amount;
         return b;
     }
