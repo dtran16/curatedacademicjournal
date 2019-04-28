@@ -14,7 +14,7 @@ contract Review {
         //id of the paper
         uint256 id;
         //file url of paper
-        string location; // maybe change later
+        string location;
         //title of paper
         string title;
         //paper tags
@@ -72,14 +72,14 @@ contract Review {
         // impliment some sort of limit on staking tokens
     }
 
-    //getter for current ID
+    //getter for current ID; actually the next id to be assigned
     function getCurrentID() public returns (uint256 id) {
         return currentId;
     }
 
     //check if a paper exists
     function paperExists(uint256 _id) public returns (bool exists) {
-        return _id < getCurrentID() && _id > 0;
+        return _id < getCurrentID() && _id > 0; 
     }
 
     // add a new paper with the specified fields
