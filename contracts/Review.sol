@@ -14,7 +14,7 @@ contract Review {
         //id of the paper
         uint256 id;
         //file url of paper
-        string location; // maybe change later
+        string location;
         //title of paper
         string title;
         //paper tags
@@ -30,7 +30,7 @@ contract Review {
         //id of nect paper if this is an old copy
         uint256 nextId;
         //state of the paper,
-        //(0 unreviewed, 1 ready for review, 2 under review, 3 published, 4 old version of a different paper, 5 for dead)
+        //(0 unreviewed, 1 ready for review, 2 under review (only professionals can review), 3 published, 4 old version of a different paper, 5 for dead)
         uint state;
         //vote related stuff
         uint256 userVotes;
@@ -48,7 +48,7 @@ contract Review {
     //mapping of addresses to booleans representing wether an address is "verified"
     mapping(address => bool) private verifiedUsers;
 
-    //constant
+    //constant; max number of professional reviewers until paper is pushed to being reviewed and published
     uint256 NUMBER_OF_REVIEWERS = 15;
     
     //mapping of an address to the topics the verified user is allowed to review
@@ -72,14 +72,14 @@ contract Review {
         // impliment some sort of limit on staking tokens
     }
 
-    //getter for current ID
+    //getter for current ID; actually the next id to be assigned
     function getCurrentID() public returns (uint256 id) {
         return currentId;
     }
 
     //check if a paper exists
     function paperExists(uint256 _id) public returns (bool exists) {
-        return _id < getCurrentID() && _id > 0;
+        return _id < getCurrentID() && _id > 0; 
     }
 
     // add a new paper with the specified fields
@@ -143,7 +143,6 @@ contract Review {
         date = papers[_id].date;
     }
 
-
     //user signs up to review a paper
     function addReviewerForPaper(uint256 _id) public returns (bool success) {
         //first check if the paper can take more reviewers
@@ -159,7 +158,7 @@ contract Review {
                 if (i == j) {
                     reviewersForPaper[_id].push(msg.sender);
                     if (reviewersForPaper[_id].length == NUMBER_OF_REVIEWERS) {
-                        papers[_id].state = 2;
+                        papers[_id].state = 2; //now, only professionals can review this paper
                     }
                     return true;
                 }
@@ -174,7 +173,7 @@ contract Review {
         if (papers[_id].state < 3) {
             //if the paper is under review, only reviewers can comment
             if(papers[_id].state == 2) {
-               address[] memory reviewers = reviewersForPaper[_id];
+                address[] memory reviewers = reviewersForPaper[_id];
                 bool x = false;
                 for (uint i = 0; i < reviewers.length; i++) {
                     if (msg.sender == reviewers[i]) {
@@ -182,14 +181,14 @@ contract Review {
                         break;
                     }
                 }
-                if (x == false) {
-                    return false;
-                } else {
+
+                if (x) {
                     papers[_id].comments.push(_comment);
-                    return true;
                 } 
+                return x;
             } else {
                 papers[_id].comments.push(_comment);
+                return true;
             }
         }
         return false;
@@ -197,22 +196,21 @@ contract Review {
 
     //get reviewers for a paper
     function getReviewersForPaper(uint256 _id) public returns (address[] memory reviewers) {
-        return reviewersForPaper[_id];
+        reviewers = reviewersForPaper[_id];
     }
 
     //get topics for reviewer
     function getTopicsForReviewer(address _reviewer) public returns (string[] memory topics) {
-        return allowedReviewerTopics[_reviewer];
+        topics = allowedReviewerTopics[_reviewer];
     }
 
-    //verify  a user, only the dev account can do this because we onboard them
+    //verify a user, only the dev account can do this because we onboard them
     function addVerifiedUser(address _user) public returns (bool success) {
         if (msg.sender == devAddress) {
             verifiedUsers[_user] = true;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     // reset the topics for a reviewer, only dev can do this
@@ -220,9 +218,8 @@ contract Review {
         if (msg.sender == devAddress) {
             allowedReviewerTopics[_user] = _topics;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     //reviewer votes on a paper
@@ -237,34 +234,35 @@ contract Review {
                 break;
             }
         }
-        if (x == false) {
-            return false;
-        }
-        papers[_id].reviewerVotes += 1;
-        if (vote) {
-            papers[_id].reviewerScore += 1;
-        }
 
-        //check if paper is to be published or killed yet and distribute tokens
-        if(papers[_id].reviewerScore >= 10 ||
-            (papers[_id].reviewerScore < 10 && papers[_id].reviewerVotes == 15)) {
-            if (papers[_id].reviewerScore >= 10) {
-                //publish
-                papers[_id].state = 3;
-            } else {
-                //kill
-                papers[_id].state = 5;
+        if (x) {
+            papers[_id].reviewerVotes += 1;
+            if (vote) {
+                papers[_id].reviewerScore += 1;
             }
-            //distribute tokens
-            uint256 amountToDistriute = getNumTokens(_id) / 15;
-            for (uint i = 0; i < reviewers.length; i++) {
-                tokenContract.collectTokens(_id, reviewers[i], amountToDistriute);
-            }
-        } 
-        return true;   
+
+            //check if paper is to be published or killed yet and distribute tokens
+            if(papers[_id].reviewerScore >= 10 ||
+                (papers[_id].reviewerScore < 10 && papers[_id].reviewerVotes == 15)) {
+                if (papers[_id].reviewerScore >= 10) {
+                    //publish
+                    papers[_id].state = 3;
+                } else {
+                    //kill
+                    papers[_id].state = 5;
+                }
+                //distribute tokens
+                uint256 amountToDistriute = getNumTokens(_id) / 15;
+                for (uint i = 0; i < reviewers.length; i++) {
+                    tokenContract.collectTokens(_id, reviewers[i], amountToDistriute);
+                }
+            } 
+        }
+        return x;   
     }
 
-    //userVoteOnPaper
+    // vote function updates given paper (passed in id) with the vote associated with the msg.sender
+    // method guards against double voting and staying within voting range [0, 10]
     function userVoteOnPaper(uint256 _id, uint256 _vote) public returns (bool success) {
         assert(_id < currentId);
         assert(_vote > 0 && _vote <= 10);
@@ -274,7 +272,7 @@ contract Review {
         return true;
     }
 
-    //stake tokens
+    // stake tokens onto an existing paper (staked token value contributes to review process)
     function stakeTokens(uint256 _id, uint256 _amount) public returns (bool success) {
         assert(paperExists(_id));
         assert(papers[_id].state == 0);
@@ -283,9 +281,9 @@ contract Review {
         
     }
 
-    //revokes all of a user's tokens from an old revision of a paper
+    // revokes all of a user's tokens from an old revision of a paper
     function revokeTokens(uint256 _id) public returns (bool success) {
-        require(papers[_id].state == 4 || papers[_id].state == 0);
+        require(papers[_id].state == 4 || papers[_id].state == 0); //old draft or unreviewed
         uint256 amount = tokenContract.tokensStakedByUser(_id, msg.sender);
         return tokenContract.collectTokens(_id, msg.sender, amount);
     }

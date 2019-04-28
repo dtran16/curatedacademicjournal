@@ -39,37 +39,32 @@ contract CAJCoin {
 
     // SECURITY HELPER METHODS
     function userCanSend(address _user, uint256 _amount) private returns (bool success) {
-        bool b = true;
-        b = b && _amount > 0;
+        bool b = _amount > 0;
         if (msg.sender == _user) {
             b = b && balances[_user] >= _amount ;
-            return b;
         } else {
             b = b && allowed[_user][msg.sender] >= _amount;
-            return b;
         }
+        return b;
     }
 
     function userCanRecive(address _user, uint256 _amount) private returns (bool success) {
-        bool b = true;
-        b = b && _amount > 0;
-        b = b && (balances[_user].add(_amount)) > balances[_user];
+        bool b = _amount > 0;
+        b = b && (balances[_user]).add(_amount) > balances[_user];
         return b;
     }
 
     function paperCanRecive(uint256 _paper, uint256 _amount) private returns (bool success) {
-        bool b = true;
-        b = b && _amount > 0;
+        bool b = _amount > 0;
         b = b && archive.paperExists(_paper);
         b = b && archive.getPaperState(_paper) == 0;
         return b;
     }
 
     function paperCanSend(uint256 _paper, uint256 _amount) private returns (bool success) {
-        bool b = true;
-        b = b && _amount > 0;
+        bool b = _amount > 0;
         b = b && archive.paperExists(_paper);
-        b = b && archive.getPaperState(_paper) == 2 || archive.getPaperState(_paper) == 4;
+        b = b && archive.getPaperState(_paper) == 2 || archive.getPaperState(_paper) == 4; // 2: under review; 4: old version 
         b = b && paperBalances[_paper] >= _amount;
         return b;
     }
@@ -80,7 +75,6 @@ contract CAJCoin {
         symbol = "CAJ"; 
         decimals = 18; 
         
-        //need to fix below
         devAddress = msg.sender;
         totalSup = 1000000 * 10**uint(decimals);
         balances[devAddress] = totalSup;
@@ -97,8 +91,9 @@ contract CAJCoin {
         return balances[_owner];
     }
 
-    // Transfer the balance from owner's account to another account
+    // Transfer given amount from owner's account to another account
     function transfer(address _to, uint256 _amount) public  returns (bool success) {
+<<<<<<< HEAD
         if (userCanSend(msg.sender, _amount) && userCanRecive(_to, _amount)) {
 <<<<<<< HEAD
             balances[msg.sender] = balances[msg.sender].sub(_amount);
@@ -112,18 +107,29 @@ contract CAJCoin {
         } else {
             return false;
         }
+=======
+        // if (userCanSend(msg.sender, _amount) && userCanRecive(_to, _amount)) {
+        //     balances[msg.sender] = balances[msg.sender].sub(_amount);
+        //     balances[_to] = balances[_to].add(_amount);
+        //     emit Transfer(msg.sender, _to, _amount); 
+        //     return true;
+        // }
+        // return false;
+        return transferFrom(msg.sender, _to, amount);
+>>>>>>> d972e6c468494f9525669a35780664f930e946ca
     }
 
-    //transer from someone else's account to another accound
+    // Transer given amount from one account to another account
     function transferFrom(address _from, address _to, uint256 _amount) public returns (bool success) {
         if (userCanSend(_from, _amount) && userCanRecive(_to, _amount)) {
             balances[_from] = balances[_from].sub(_amount);
             allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_amount);
             balances[_to] = balances[_to].add(_amount);
+
+            emit Transfer(_from, _to, _amount);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
     // Allow _spender to withdraw from your account, multiple times, up to the _value amount.
     // If this function is called again it overwrites the current allowance with _value.
@@ -142,9 +148,8 @@ contract CAJCoin {
             paperBalances[_to] = paperBalances[_to].add(_amount);
             userTokensStaked[_to][_from] += _amount; 
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     //Collect a token from a paper, this will also be run from the other contract
@@ -154,9 +159,8 @@ contract CAJCoin {
             paperBalances[_from] = paperBalances[_from].sub(_amount);
             balances[_to] = balances[_to].add(_amount);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     //Return the balance of a paper account
