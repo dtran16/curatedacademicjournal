@@ -64,7 +64,6 @@ contract Review {
     //next id to be assigned
     uint256 private currentId; 
     
-
     // constructor
     constructor() public {//(uint threshold) public {
         // 0 is used as a null value for ids
@@ -144,7 +143,6 @@ contract Review {
         date = papers[_id].date;
     }
 
-    
 
     //user signs up to review a paper
     function addReviewerForPaper(uint256 _id) public returns (bool success) {
