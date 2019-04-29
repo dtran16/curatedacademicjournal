@@ -4,9 +4,9 @@ const Crowdsale = artifacts.require("Crowdsale");
 contract("CrowdSale TokenSale Tests", async accounts => {
 
   // test token deployment and address storement
-  it("should depoly token and store the address", async () => {
+  it("should deploy token and store the address", async () => {
     let instance = await CAJCoin.deployed();
-    let instanceSale = await Crowdsale.dployed();
+    let instanceSale = await Crowdsale.deployed();
     
     assert.equal(instance, 'token addr couldn\'t be stored');
     assert.equal(instanceSale, 'token addr couldn\'t be stored');
