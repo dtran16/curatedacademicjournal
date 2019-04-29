@@ -6,6 +6,7 @@ import "./IERC20.sol";
 import "./SafeMath.sol";
 import "./Review.sol";
 
+// contract CAJCoin is IERC20 {
 contract CAJCoin {
 
     //import safemath
