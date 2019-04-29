@@ -269,7 +269,7 @@ contract Review {
 
     // vote function updates given paper (passed in id) with the vote associated with the msg.sender
     // method guards against double voting and staying within voting range [0, 10]
-    function userVoteOnPaper(uint256 _id, uint256 _vote) public returns (bool success) {
+    function userVoteOnPaper(uint256 _id, uint256 _vote, uint256 _amount) public returns (bool success) {
         assert(_id < currentId);
         assert(_vote > 0 && _vote <= 10);
         assert(!userHasVoted[_id][msg.sender]);
