@@ -64,13 +64,15 @@ contract Review {
     //next id to be assigned
     uint256 private currentId;
 
+
     // constructor
-    constructor() public {//(uint threshold) public {
+    constructor(address coinAddr) public {//(uint threshold) public {
         // 0 is used as a null value for ids
         currentId = 1;
         devAddress = msg.sender;
         verifiedUsers[devAddress] = true;
         // impliment some sort of limit on staking tokens
+        tokenContract = CAJCoin(coinAddr);
     }
 
     //getter for current ID
@@ -269,10 +271,14 @@ contract Review {
     }
 
     //userVoteOnPaper
-    function userVoteOnPaper(uint256 _id, uint256 _vote) public returns (bool success) {
+    function userVoteOnPaper(uint256 _id, uint256 _vote, uint256 _amount) public returns (bool success) {
         assert(_id < currentId);
         assert(_vote > 0 && _vote <= 10);
         assert(!userHasVoted[_id][msg.sender]);
+        if (_amount < 1) {
+            return false;
+        }
+        stakeTokens(_id, _amount);
         papers[_id].userScore += _vote;
         papers[_id].userVotes += 1;
         return true;

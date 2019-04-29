@@ -60,10 +60,22 @@ contract("Review", async accounts => {
       res = await instance.addReviewerForPaper(1, { from: accounts[1]});
       reviewers = await instance.getReviewersForPaper.call(1);
       assert(listEq(reviewers, [acct, accounts[1]]))
+      res = await instance.addComment(1, "good paper! it was really nice");
+      let comment = await instance.getPaperComments.call(1);
+      assert(listEq(comment, ["good paper! it was really nice"]));
   });
 
   it("testing voting, coin stuff", async () => {
-    // Get initial balances of first and second account.
-    
+      let instance = await Cont.deployed();
+      let acct = accounts[0];
+      let paper = await instance.addPaper("Dylan's Research Paper", "URL", ["Blockchain", "second"], "Dylan", 0, { from: acct });
+      let addTopic = await instance.addTopicsForReviewer(acct, ["Blockchain"]);
+      let res = await instance.addReviewerForPaper(1);
+      //res = await instance.userVoteOnPaper(1, 8, 5);
+    // reviewerVoteOnPaper
+    // userVoteOnPaper
+    // stakeTokens
+    // revokeTokens
+    // getNumTokens
   });
 });
