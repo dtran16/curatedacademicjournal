@@ -49,7 +49,7 @@ contract Review {
     mapping(address => bool) private verifiedUsers;
 
     //constant; max number of professional reviewers until paper is pushed to being reviewed and published
-    uint256 NUMBER_OF_REVIEWERS = 15;
+    uint256 NUMBER_OF_REVIEWERS = 10;
 
     //mapping of an address to the topics the verified user is allowed to review
     mapping(address => string[]) allowedReviewerTopics;
@@ -82,7 +82,7 @@ contract Review {
 
     //check if a paper exists
     function paperExists(uint256 _id) public returns (bool exists) {
-        return _id < getCurrentID() && _id > 0; 
+        return _id < getCurrentID() && _id > 0;
     }
 
     // add a new paper with the specified fields
@@ -190,7 +190,7 @@ contract Review {
 
                 if (x) {
                     papers[_id].comments.push(_comment);
-                } 
+                }
                 return x;
             } else {
                 papers[_id].comments.push(_comment);
@@ -229,7 +229,7 @@ contract Review {
     }
 
     //reviewer votes on a paper
-    function reviewerVoteOnPaper(uint256 _id, bool vote) private returns (bool success) {
+    function reviewerVoteOnPaper(uint256 _id, bool vote) public returns (bool success) {
         assert(verifiedUsers[msg.sender]);
         assert(reviewerHasVoted[_id][msg.sender] == false);
         address[] storage reviewers = reviewersForPaper[_id];
@@ -249,7 +249,7 @@ contract Review {
 
             //check if paper is to be published or killed yet and distribute tokens
             if(papers[_id].reviewerScore >= 10 ||
-                (papers[_id].reviewerScore < 10 && papers[_id].reviewerVotes == 15)) {
+                (papers[_id].reviewerScore < 10 && papers[_id].reviewerVotes == NUMBER_OF_REVIEWERS)) {
                 if (papers[_id].reviewerScore >= 10) {
                     //publish
                     papers[_id].state = 3;
@@ -258,13 +258,13 @@ contract Review {
                     papers[_id].state = 5;
                 }
                 //distribute tokens
-                uint256 amountToDistriute = getNumTokens(_id) / 15;
+                uint256 amountToDistriute = getNumTokens(_id) / NUMBER_OF_REVIEWERS;
                 for (uint i = 0; i < reviewers.length; i++) {
-                    tokenContract.collectTokens(_id, reviewers[i], amountToDistriute);
+                    x = tokenContract.collectTokens(_id, reviewers[i], amountToDistriute);
                 }
-            } 
+            }
         }
-        return x;   
+        return x;
     }
 
     // vote function updates given paper (passed in id) with the vote associated with the msg.sender
@@ -293,7 +293,7 @@ contract Review {
 
     // revokes all of a user's tokens from an old revision of a paper
     function revokeTokens(uint256 _id) public returns (bool success) {
-        require(papers[_id].state == 4 || papers[_id].state == 0); //old draft or unreviewed
+        require(papers[_id].state == 4); //old draft or unreviewed
         uint256 amount = tokenContract.tokensStakedByUser(_id, msg.sender);
         return tokenContract.collectTokens(_id, msg.sender, amount);
     }
