@@ -1,4 +1,5 @@
 var Cont = artifacts.require("Review");
+var Token = artifacts.require("CAJCoin");
 
 function listEq(arr1, arr2) {
     if(arr1.length !== arr2.length)
@@ -67,14 +68,23 @@ contract("Review", async accounts => {
 
   it("testing voting, coin stuff", async () => {
       let instance = await Cont.deployed();
+      let tokenInstance = await Token.deployed();
+      let res = await instance.setContract(tokenInstance.address);
+      res = await tokenInstance.setContract(instance.address);
       let acct = accounts[0];
       let paper = await instance.addPaper("Dylan's Research Paper", "URL", ["Blockchain", "second"], "Dylan", 0, { from: acct });
       let addTopic = await instance.addTopicsForReviewer(acct, ["Blockchain"]);
-      let res = await instance.addReviewerForPaper(1);
-      //res = await instance.userVoteOnPaper(1, 8, 5);
+      res = await instance.addReviewerForPaper(1);
+      res = await tokenInstance.transfer(accounts[1], 1000, { from: acct });
+      let bal = await tokenInstance.balanceOf(accounts[1]);
+      res = await instance.userVoteOnPaper(1, 8, 5, { from: accounts[1] });
+      let votes = await instance.getPaperVotes.call(1);
+      assert.equal(votes[0], 8);
+      assert.equal(votes[1], 1);
+      let pbalance = await tokenInstance.paperBalance.call(1);
+      assert.equal(pbalance, 1, "wtf");
+
     // reviewerVoteOnPaper
-    // userVoteOnPaper
-    // stakeTokens
     // revokeTokens
     // getNumTokens
   });

@@ -66,13 +66,13 @@ contract Review {
 
 
     // constructor
-    constructor(address coinAddr) public {//(uint threshold) public {
+    constructor() public {//(uint threshold) public {
         // 0 is used as a null value for ids
         currentId = 1;
         devAddress = msg.sender;
         verifiedUsers[devAddress] = true;
         // impliment some sort of limit on staking tokens
-        tokenContract = CAJCoin(coinAddr);
+        //tokenContract = CAJCoin(coinAddr);
     }
 
     //getter for current ID
@@ -303,6 +303,11 @@ contract Review {
     //get current number of tokens for a paper
     function getNumTokens(uint256 _id) public returns (uint256) {
         return tokenContract.paperBalance(_id);
+    }
+
+    function setContract(address addr) public {
+        assert(msg.sender == devAddress);
+        tokenContract = CAJCoin(addr);
     }
 
 }
