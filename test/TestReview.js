@@ -75,17 +75,40 @@ contract("Review", async accounts => {
       let paper = await instance.addPaper("Dylan's Research Paper", "URL", ["Blockchain", "second"], "Dylan", 0, { from: acct });
       let addTopic = await instance.addTopicsForReviewer(acct, ["Blockchain"]);
       res = await instance.addReviewerForPaper(1);
+      let bal = await tokenInstance.balanceOf.call(accounts[1]);
       res = await tokenInstance.transfer(accounts[1], 1000, { from: acct });
-      let bal = await tokenInstance.balanceOf(accounts[1]);
+      bal = await tokenInstance.balanceOf.call(accounts[1]);
       res = await instance.userVoteOnPaper(1, 8, 5, { from: accounts[1] });
       let votes = await instance.getPaperVotes.call(1);
       assert.equal(votes[0], 8);
       assert.equal(votes[1], 1);
-      let pbalance = await tokenInstance.paperBalance.call(1);
-      assert.equal(pbalance, 1, "wtf");
+      let pbalance = await instance.getNumTokens.call(1);
+      assert.equal(pbalance, 5, "wtf");
+      let currbal = await tokenInstance.balanceOf.call(accounts[1]);
+      assert.equal(currbal.toNumber(), bal.toNumber()-5, "voting failed");
+      let newpaper = await instance.addPaper("Dylan's New Research Paper", "URL", ["Blockchain", "second"], "Dylan", 1, { from: acct });
+      let retbal = await instance.revokeTokens(1, { from: accounts[1]});
+      currbal = await tokenInstance.balanceOf.call(accounts[1]);
+      assert.equal(bal.toNumber(), currbal.toNumber(), "revoke failed");
+      res = instance.userVoteOnPaper(2, 8, 20);
+      currbal = await instance.getNumTokens.call(2);
+      assert.equal(currbal, 20, "wrong paper balance");
+      for (var i = 1; i < 10; i++) {
+          res = await instance.addVerifiedUser(accounts[i], { from: acct });
+          let res1 = await instance.addTopicsForReviewer(accounts[i], ["Blockchain"], { from: acct });
+          let res2 = await instance.addReviewerForPaper(2, { from: accounts[i] });
+          let res3 = await instance.reviewerVoteOnPaper(2, true, { from: accounts[i] });
+      }
+      res = instance.addReviewerForPaper(2, { from: acct });
+      res3 = await instance.reviewerVoteOnPaper(2, true, { from: acct });
+      let state = await instance.getPaperState.call(2);
+      assert.equal(state, 3, "wrong state");
+      res = await tokenInstance.transfer(acct, 1000, { from: accounts[1] });
+      for (var i = 1; i < 10; i++) {
+          currbal = await tokenInstance.balanceOf.call(accounts[i]);
+          assert.equal(currbal.toNumber(), 2, "balance wrong after reimbursement");
+      }
 
-    // reviewerVoteOnPaper
-    // revokeTokens
-    // getNumTokens
+
   });
 });
