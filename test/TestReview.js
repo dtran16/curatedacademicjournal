@@ -47,48 +47,23 @@ contract("Review", async accounts => {
       let instance = await Cont.deployed();
       let acct = accounts[0];
       let paper = await instance.addPaper("Dylan's Research Paper", "URL", ["Blockchain", "second"], "Dylan", 0, { from: acct });
-      let res = await instance.addReviewerForPaper(1);
-      
-
-    let outCoinBalance = await meta.getBalance.call(accounts[0]);
-    let metaCoinBalance = outCoinBalance.toNumber();
-    let outCoinBalanceEth = await meta.getBalanceInEth.call(accounts[0]);
-    let metaCoinEthBalance = outCoinBalanceEth.toNumber();
-    assert.equal(metaCoinEthBalance, 2 * metaCoinBalance);
+      let res = await instance.addReviewerForPaper.call(1);
+      assert(!res);
+      let addTopic = await instance.addTopicsForReviewer(acct, ["Blockchain"]);
+      let reviewerTopics = await instance.getTopicsForReviewer.call(acct);
+      assert(listEq(reviewerTopics, ["Blockchain"]));
+      res = await instance.addReviewerForPaper(1);
+      let reviewers = await instance.getReviewersForPaper.call(1);
+      assert(listEq(reviewers, [acct]));
+      let add = await instance.addVerifiedUser(accounts[1], { from: acct });
+      res = await instance.addTopicsForReviewer(accounts[1], ["Blockchain"]);
+      res = await instance.addReviewerForPaper(1, { from: accounts[1]});
+      reviewers = await instance.getReviewersForPaper.call(1);
+      assert(listEq(reviewers, [acct, accounts[1]]))
   });
 
   it("testing voting, coin stuff", async () => {
     // Get initial balances of first and second account.
-    let account_one = accounts[0];
-    let account_two = accounts[1];
-
-    let amount = 10;
-
-    let instance = await MetaCoin.deployed();
-    let meta = instance;
-
-    let balance = await meta.getBalance.call(account_one);
-    let account_one_starting_balance = balance.toNumber();
-
-    balance = await meta.getBalance.call(account_two);
-    let account_two_starting_balance = balance.toNumber();
-    await meta.sendCoin(account_two, amount, { from: account_one });
-
-    balance = await meta.getBalance.call(account_one);
-    let account_one_ending_balance = balance.toNumber();
-
-    balance = await meta.getBalance.call(account_two);
-    let account_two_ending_balance = balance.toNumber();
-
-    assert.equal(
-      account_one_ending_balance,
-      account_one_starting_balance - amount,
-      "Amount wasn't correctly taken from the sender"
-    );
-    assert.equal(
-      account_two_ending_balance,
-      account_two_starting_balance + amount,
-      "Amount wasn't correctly sent to the receiver"
-    );
+    
   });
 });

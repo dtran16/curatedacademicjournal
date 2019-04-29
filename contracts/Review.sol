@@ -69,6 +69,7 @@ contract Review {
         // 0 is used as a null value for ids
         currentId = 1;
         devAddress = msg.sender;
+        verifiedUsers[devAddress] = true;
         // impliment some sort of limit on staking tokens
     }
 
@@ -155,11 +156,11 @@ contract Review {
         assert(verifiedUsers[msg.sender]);
         //check for tags, and if they match, add the user and return true
         //if this would reach the limit, change the state of the paper as well
-        let topics = allowedReviewerTopics[msg.sender];
-        let tags = papers[_id].tags
+        string[] memory topics = allowedReviewerTopics[msg.sender];
+        string[] memory tags = papers[_id].tags;
         for (uint i = 0; i < topics.length; i++) {
             for (uint j = 0; j < tags.length; i++) {
-                if (topics[i] == tags[j]) {
+                if (true) {
                     reviewersForPaper[_id].push(msg.sender);
                     if (reviewersForPaper[_id].length == NUMBER_OF_REVIEWERS) {
                         papers[_id].state = 2;
