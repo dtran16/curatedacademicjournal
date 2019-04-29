@@ -1,4 +1,4 @@
-//current token skeleton pulled from 
+//current token skeleton pulled from
 //https://theethereum.wiki/w/index.php/ERC20_Token_Standard and part of object task
 pragma solidity 0.5.0;
 
@@ -6,17 +6,19 @@ import "./IERC20.sol";
 import "./SafeMath.sol";
 import "./Review.sol";
 
-contract CAJCoin { 
-    
+contract CAJCoin {
+
     //import safemath
     using SafeMath for uint256;
 
     //Genreal Parameters
-    string public name; 
-    string public symbol; 
+    string public name;
+    string public symbol;
     uint8 public decimals;
     uint256 public totalSup;
-    
+
+    address private caddr;
+
     // Balances for each type of account
     mapping(address => uint256) private balances;
     mapping(uint256 => uint256) private paperBalances;
@@ -33,7 +35,6 @@ contract CAJCoin {
     // Events
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
     event Transfer(address indexed from, address indexed to, uint256 value);
-    
     // Owner of account approves the transfer of an amount to another account
     mapping(address => mapping (address => uint256)) allowed;
 
@@ -64,17 +65,17 @@ contract CAJCoin {
     function paperCanSend(uint256 _paper, uint256 _amount) private returns (bool success) {
         bool b = _amount > 0;
         b = b && archive.paperExists(_paper);
-        b = b && archive.getPaperState(_paper) == 2 || archive.getPaperState(_paper) == 4; // 2: under review; 4: old version 
+        b = b && archive.getPaperState(_paper) == 2 || archive.getPaperState(_paper) == 4 || archive.getPaperState(_paper) == 3 || archive.getPaperState(_paper) == 5; // 2: under review; 4: old version
         b = b && paperBalances[_paper] >= _amount;
         return b;
     }
 
     // This is the constructor and automatically runs when the smart contract is uploaded
-    constructor() public { 
-        name = "CAJCoin"; 
-        symbol = "CAJ"; 
-        decimals = 18; 
-        
+    constructor() public {
+        name = "CAJCoin";
+        symbol = "CAJ";
+        decimals = 18;
+
         devAddress = msg.sender;
         totalSup = 1000000 * 10**uint(decimals);
         balances[devAddress] = totalSup;
@@ -92,11 +93,11 @@ contract CAJCoin {
     }
 
     // Transfer given amount from owner's account to another account
-    function transfer(address _to, uint256 _amount) public  returns (bool success) {
+    function transfer(address _to, uint256 _amount) public returns (bool success) {
         if (userCanSend(msg.sender, _amount) && userCanRecive(_to, _amount)) {
             balances[msg.sender] = balances[msg.sender].sub(_amount);
             balances[_to] = balances[_to].add(_amount);
-            emit Transfer(msg.sender, _to, _amount); 
+            emit Transfer(msg.sender, _to, _amount);
             return true;
         }
         return false;
@@ -126,11 +127,15 @@ contract CAJCoin {
     //mapping(uint256 => mapping(address => uint256)) private userTokensStaked;
     //Stake a token on a paper, this will be called from the other contract
     function stakeTokens(address _from, uint256 _to, uint256 _amount) external returns (bool success) {
-        if (userCanSend(_from, _amount) && paperCanRecive(_to, _amount)
-            && msg.sender == archive.devAddress()) {
+        if (balances[_from] < _amount) {
+            return false;
+        }
+        if (paperCanRecive(_to, _amount)
+            && msg.sender == caddr) {
             balances[_from] = balances[_from].sub(_amount);
             paperBalances[_to] = paperBalances[_to].add(_amount);
-            userTokensStaked[_to][_from] += _amount; 
+            userTokensStaked[_to][_from] += _amount;
+
             return true;
         }
         return false;
@@ -139,7 +144,7 @@ contract CAJCoin {
     //Collect a token from a paper, this will also be run from the other contract
     function collectTokens(uint256 _from, address _to, uint256 _amount) external  returns (bool success) {
         if (userCanRecive(_to, _amount) && paperCanSend(_from, _amount)
-            && msg.sender == archive.devAddress()) {
+            && msg.sender == caddr) {
             paperBalances[_from] = paperBalances[_from].sub(_amount);
             balances[_to] = balances[_to].add(_amount);
             return true;
@@ -154,5 +159,11 @@ contract CAJCoin {
 
     function tokensStakedByUser(uint256 _paperID, address _user) public returns (uint256 amount) {
         return userTokensStaked[_paperID][_user];
+    }
+
+    function setContract(address addr) public {
+        assert(msg.sender == devAddress);
+        archive = Review(addr);
+        caddr = addr;
     }
 }
