@@ -43,21 +43,21 @@ contract("Crowdsale Tests", async accounts => {
   // });
 
   // test token purchase
-  it("should run through multiple internal calls to validate token purchase", async () => {
-    let coin = await CAJCoin.deployed();
-    let crowdsale = await Crowdsale.deployed();
+  // it("should run through multiple internal calls to validate token purchase", async () => {
+  //   let coin = await CAJCoin.deployed();
+  //   let crowdsale = await Crowdsale.deployed();
 
-    let a1 = accounts[1];
-    let a2 = accounts[2];
+  //   let a1 = accounts[1];
+  //   let a2 = accounts[2];
 
-    let transfer = await coin.transfer(a1, 1000);
-    let transferSuccess = await coin.balanceOf.call(a1);
-    assert.equal(transferSuccess, 1000), 'transfer from token pool to account 1 failed';
+  //   let transfer = await coin.transfer(a1, 1000);
+  //   let transferSuccess = await coin.balanceOf.call(a1);
+  //   assert.equal(transferSuccess, 1000), 'transfer from token pool to account 1 failed';
 
-    let purchase = await crowdsale.buyTokens(a1);
-    assert(purchase, 'did not fulfill validation internal tests')
-    // let prevalSuccess = await crowdsale._preValidatePurchase(a1, 25);
-    // assert(prevalSuccess, 'token addr couldn\'t be stored');
-  });
+  //   let purchase = await crowdsale.buyTokens(a1);
+  //   assert(purchase, 'did not fulfill validation internal tests')
+  //   // let prevalSuccess = await crowdsale._preValidatePurchase(a1, 25);
+  //   // assert(prevalSuccess, 'token addr couldn\'t be stored');
+  // });
 
 });

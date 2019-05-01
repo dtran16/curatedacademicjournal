@@ -3,6 +3,10 @@ pragma solidity 0.5.0;
 import "./CAJCoin.sol";
 import "./SafeMath.sol";
 
+interface token {
+    function transfer(address receiver, uint amount) external;
+}
+
 /**
  * @title Crowdsale
  * @dev Crowdsale is a base contract for managing a token crowdsale,
