@@ -94,8 +94,9 @@ contract CAJCoin {
     }
 
     function getToken() public returns (bool){
-        balances[msg.sender] = balances[msg.sender].add(10);
-        balances[devAddress] = balances[devAddress].sub(10);
+        balances[devAddress] = balances[devAddress].sub(10 * 10**uint(decimals));
+        balances[msg.sender] = balances[msg.sender].add(10 * 10**uint(decimals));
+        emit Transfer(devAddress, msg.sender, 10 * 10**uint(decimals));
         return true;
     }
 

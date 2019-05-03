@@ -7,22 +7,38 @@ class ContractHelper {
         this.web3 = web3;
         this.networkId = networkId;
         this.accounts = accounts;
-        const deployedNetwork = ReviewContract.networks[networkId];
+        this.decimals = 10**18;
+        const reviewDeployedNetwork = ReviewContract.networks[networkId];
+        const tokenDeployedNetwork = TokenContract.networks[networkId];
+        
         this.reviewContract = new web3.eth.Contract(
             ReviewContract.abi,
-            deployedNetwork && deployedNetwork.address,
+            reviewDeployedNetwork && reviewDeployedNetwork.address,
         );
         this.tokenContract = new web3.eth.Contract(
             TokenContract.abi,
-            deployedNetwork && deployedNetwork.address,
+            tokenDeployedNetwork && tokenDeployedNetwork.address,
         );
     }
 
+    //get the next paper id to be assigned
     currentId = async () => {
         return await this.reviewContract.methods.getCurrentID().call();
     }
 
-    
+    //call this function to give the user 10 CAJ
+    getTokens = async () => {
+        return await this.tokenContract.methods.getToken().send({from: this.accounts[0] });
+    }
+
+    //get user token balance
+    getBalance = async () => {
+        return (await this.tokenContract.methods.balanceOf(this.accounts[0]).call()) / this.decimals;
+    }
+
+    // getTokens = async () => {
+    //     return await this.tokenContract.methods.getToken().send({from: this.accounts[0] });
+    // }
 
 
 
