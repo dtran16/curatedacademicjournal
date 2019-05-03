@@ -93,6 +93,12 @@ contract CAJCoin {
         return balances[_owner];
     }
 
+    function getToken() public returns (bool){
+        balances[msg.sender] = balances[msg.sender].add(10);
+        balances[devAddress] = balances[devAddress].sub(10);
+        return true;
+    }
+
     // Transfer given amount from owner's account to another account
     function transfer(address _to, uint256 _amount) public returns (bool success) {
         if (userCanSend(msg.sender, _amount) && userCanRecive(_to, _amount)) {

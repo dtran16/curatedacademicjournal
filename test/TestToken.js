@@ -63,4 +63,16 @@ contract("CAJCoin Tests", async accounts => {
     let bal = await instance.paperBalance.call(accounts[0]);
     assert.equal(bal, 0);
   });
+  it("test get ten coins", async () => {
+    let instance = await CAJCoin.deployed();
+    let acct0 = accounts[0];
+    let acct1 = accounts[1];
+    let init = await instance.balanceOf.call(acct0);
+    let init1 = await instance.balanceOf.call(acct1);
+    let res = await instance.getToken({ from: acct1 });
+    let after = await instance.balanceOf.call(acct0);
+    let after1 = await instance.balanceOf.call(acct1);
+    assert.equal(init1.toNumber(), after1 - 10, "why");
+    
+  });
 });
