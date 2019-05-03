@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className="logoName">Curator</div>
             <div className="profile">
                 <img
-                    src=""
+                    src="profile.png"
                     alt="Profile"
                     height="50px"
                     width="50px"

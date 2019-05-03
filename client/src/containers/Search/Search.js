@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
-
-// export default function Search() {
-//     //handle type
-//     //catch data
-//     //
-
-//     return (
-//         <div>
-//             <input type="text" name="lname" />
-//             <input type="submit" value="Submit"/>
-//         </div>
-//     )
-// }
+import "./Search.css";
 
 class Search extends React.Component {
     constructor(props) {
@@ -24,10 +12,12 @@ class Search extends React.Component {
     render() {
       return (
         <div className="searchBar">
-            <div className="searchContainer">
+            <div className="inputContainer">
                 <input value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
             </div>
-            <button type="button" onClick={this.onSubmit.bind(this)} className="btn">Save</button>
+            <div className="button">
+                <input type="submit" onClick={this.handleSubmit} ></input>
+            </div>
         </div>
       );
     }
@@ -36,6 +26,11 @@ class Search extends React.Component {
       this.setState({
         inputValue: evt.target.value
       });
+    }
+
+    handleSubmit() {
+      //redirect data back
+    
     }
   };
 

@@ -9,9 +9,9 @@ import "./styles/App.css";
 
 //containers
 import Temp from "./containers/temp";
-import Navbar from "./containers/Navbar/Navbar";
-import Footer from "./containers/Footer";
-import Search from "./containers/Search";
+import Navbar from "./containers/components/Navbar/Navbar";
+import Footer from "./containers/components/Footer/Footer";
+import Search from "./containers/Search/Search";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
