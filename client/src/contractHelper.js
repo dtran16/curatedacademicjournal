@@ -3,21 +3,23 @@ import SaleContract from "./contracts/Crowdsale.json";
 import ReviewContract from "./contracts/Review.json";
 
 class ContractHelper {
-
     //constructor takes a web3 instance and sets up connections to the contracts
-    constructor(web3) {
+    constructor(web3, networkId, accounts) {
         this.web3 = web3;
-        // const networkId = await web3.eth.net.getId();
-        // const deployedNetwork = ReviewContract.networks[networkId];
-        // this.reviewContract = new web3.eth.Contract(
-        //     ReviewContract.abi,
-        //     deployedNetwork && deployedNetwork.address,
-        // );
+        this.networkId = networkId;
+        this.accounts = accounts;
+        const deployedNetwork = ReviewContract.networks[networkId];
+        this.reviewContract = new web3.eth.Contract(
+            ReviewContract.abi,
+            deployedNetwork && deployedNetwork.address,
+        );
     }
 
     currentId() {
-        return this.reviewContract.methods.getC.getCurrentID().call();
+        return this.reviewContract.methods.getCurrentID().call();
     }
+
+    
     
 
     // web3 = new Web3("endpoint");

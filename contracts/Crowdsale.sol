@@ -63,6 +63,7 @@ contract Crowdsale {
         _wallet = wallet;
         _token = token;
     }
+    
 
     /**
      * @dev fallback function ***DO NOT OVERRIDE***
