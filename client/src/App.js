@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 //import SimpleStorageContract from "./contracts/SimpleStorage.json";
 import getWeb3 from "./utils/getWeb3";
-import ReviewContract from "./contracts/Review.json"
-
+import ReviewContract from "./contracts/Review.json";
+import ContractHelper from "./contractHelper"
 import "./App.css";
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
 
-      // Get the contract instance.
+      //Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = ReviewContract.networks[networkId];
       const instance = new web3.eth.Contract(
@@ -43,7 +43,7 @@ class App extends Component {
     //await contract.methods.set(2).send({ from: accounts[0] });
 
     // Get the value from the contract to prove it worked.
-    const response = await contract.methods.getCurrentID().call().toNumber();//.call();
+    const response = await contract.methods.getCurrentID().call();
 
     // Update state with the result.
     this.setState({ storageValue: response });

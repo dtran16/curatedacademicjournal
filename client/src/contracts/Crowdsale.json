@@ -6816,12 +6816,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x09D962C0C600E7638b2FcA62e3B06f4398Bb6C8a",
-      "transactionHash": "0xe5935fcee554077bf6ddaf946b162cf62be38d2d52a2e8046527d60d5338374c"
+      "address": "0xAe71E4Dc1036b25402020A053DDBF15D0D109042",
+      "transactionHash": "0x123f6316710b5c8f52c3868ee8809bbf99a3c8f30afba3203c6f580659528b9a"
     }
   },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-05-03T01:26:51.115Z",
+  "updatedAt": "2019-05-03T06:02:59.876Z",
   "devdoc": {
     "details": "Crowdsale is a base contract for managing a token crowdsale,\r allowing investors to purchase tokens with ether. This contract implements\r such functionality in its most fundamental form and can be extended to provide additional\r functionality and/or custom behavior.\r The external interface represents the basic interface for purchasing tokens, and conforms\r the base architecture for crowdsales. It is *not* intended to be modified / overridden.\r The internal interface conforms the extensible and modifiable surface of crowdsales. Override\r the methods to add functionality. Consider using 'super' where appropriate to concatenate\r behavior.\r",
     "methods": {
