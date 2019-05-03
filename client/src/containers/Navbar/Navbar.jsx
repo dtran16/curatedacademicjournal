@@ -1,12 +1,13 @@
 import React from "react"
+import "./Navbar.css";
 
 // import { RowContainer } from '../components/ContainerStyles';
 
 const Navbar = () => {
     return (
         <div className="rowContainer">
-            <div className="LogoName">Curator </div>>
-            <div className="Profile">
+            <div className="logoName">Curator</div>
+            <div className="profile">
                 <img
                     src=""
                     alt="Profile"

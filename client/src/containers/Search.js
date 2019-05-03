@@ -1,6 +1,6 @@
 import React from "react";
 
-function Search() {
+export default function Search() {
     //handle type
     //catch data
     //
@@ -11,5 +11,3 @@ function Search() {
         </div>
     )
 }
-
-export default Search;

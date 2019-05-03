@@ -62,7 +62,7 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <Search value={}/> 
+        <Search /> 
         <Temp value={this.state.storageValue}/>
         <Footer />
       </div>
