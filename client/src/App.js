@@ -9,6 +9,7 @@ import "./styles/App.css";
 
 //containers
 import Temp from "./containers/temp";
+import Navbar from "./containers./NavBar/Navbar";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
@@ -57,7 +58,10 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <Temp value={this.state.storageValue}/>
+      <div>
+        <NavBar />
+        <Temp value={this.state.storageValue}/>
+      </div>
     );
   }
 }
