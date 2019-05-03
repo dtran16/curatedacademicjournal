@@ -1,5 +1,4 @@
 import TokenContract from "./contracts/CAJCoin.json";
-import SaleContract from "./contracts/Crowdsale.json";
 import ReviewContract from "./contracts/Review.json";
 
 class ContractHelper {
@@ -13,11 +12,19 @@ class ContractHelper {
             ReviewContract.abi,
             deployedNetwork && deployedNetwork.address,
         );
+        this.tokenContract = new web3.eth.Contract(
+            TokenContract.abi,
+            deployedNetwork && deployedNetwork.address,
+        );
     }
 
-    currentId() {
-        return this.reviewContract.methods.getCurrentID().call();
+    currentId = async () => {
+        return await this.reviewContract.methods.getCurrentID().call();
     }
+
+    
+
+
 
     
     
