@@ -43,7 +43,7 @@ class App extends Component {
     // Get the value from the contract to prove it worked.
     //const response = await contractHelper.currentId();
     //await contractHelper.getTokens();
-    const response = await contractHelper.getBalance();
+    const response = await contractHelper.getUserBalance();
 
     // Update state with the result.
     this.setState({storageValue: response });
