@@ -1,22 +1,27 @@
 //Datatype for papers
 class Paper {
-    id;
-    location;
-    title;
-    numtokens;
-    tags;
-    author;
-    state;
-    constructor(id, location, title, numtokens, tags, author, state, prevID, lastID) {
+    constructor(id, location, title, numtokens, tags, authorAddress, 
+                authorName, prevId, nextId, state, userScore, reviewerScore, 
+                date, contractHelper) {
         this.id = id;
-        this. location = location;
+        this.location = location;
         this.title = title;
         this.numtokens = numtokens;
         this.tags = tags;
-        this.author = author;
+        this.authorAddress = authorAddress;
+        this.authorName = authorName;
+        this.prevId = prevId;
+        this.nextId = nextId;
         this.state = state;
-        this.prevID = prevID;
-        this.lastID = lastID;
+        this.userScore = userScore;
+        this.reviewerScore = reviewerScore;
+        this.date = date;
+        this.contractHelper = contractHelper;
     }
 
+    //update the paper
+    // update = async () => {
+    //     this = this.contractHelper.getPaper(this.id);
+    // }
 }
+export default Paper;

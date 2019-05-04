@@ -283,7 +283,7 @@ contract Review {
     }
 
     // stake tokens onto an existing paper (staked token value contributes to review process)
-    function stakeTokens(uint256 _id, uint256 _amount) public returns (bool success) {
+    function stakeTokens(uint256 _id, uint256 _amount) private returns (bool success) {
         assert(paperExists(_id));
         assert(papers[_id].state == 0);
         assert(_amount >= 1);
