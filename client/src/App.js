@@ -8,10 +8,7 @@ import ContractHelper from "./contractHelper"
 import "./styles/App.css";
 
 //containers
-import Temp from "./containers/temp";
-import Navbar from "./containers/components/Navbar/Navbar";
-import Footer from "./containers/components/Footer/Footer";
-import Search from "./containers/Search/Search";
+import Landing from "./containers/landing";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
@@ -50,7 +47,7 @@ class App extends Component {
 
     // Get the value from the contract to prove it worked.
     //const response = await contractHelper.currentId();
-    await contractHelper.getTokens();
+    //await contractHelper.getTokens();
     const response = await contractHelper.getUserBalance();
 
     // Update state with the result.
@@ -62,12 +59,7 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <div>
-        <Navbar />
-        <Search /> 
-        <Temp value={this.state.storageValue}/>
-        <Footer />
-      </div>
+      <Landing val={this.state.storageValue}/>
     );
   }
 }
