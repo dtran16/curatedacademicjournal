@@ -1,11 +1,11 @@
 .searchBar {
    display:flex;
    flex-direction: row;
-   width:30vw;
+   /* width:30vw; */
 }
 
 .inputContainer {
-   /* width:vw; */
+   width:vw;
 }
 
 .button {
@@ -14,5 +14,5 @@
 
 .input {
     width:80vw;
-    height: 30px;
+    /* height: 30px; */
 }
