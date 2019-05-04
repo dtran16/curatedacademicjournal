@@ -22,6 +22,10 @@
 
     `npm run start`
     
-6. After thr frontend loads, create a new custom RPC with HTTP://127.0.0.1:9545
+6. After the frontend loads, create a new custom RPC with HTTP://127.0.0.1:9545
 
 7. Import one of your ganache wallets so you have ether, and you're done!
+
+## Troubleshooting
+
+If you get a metamask error about an incorrect nonce, simply reset your metamask account, restart ganache, and re-migrate your contracts
