@@ -1,8 +1,7 @@
 //Datatype for papers
 class Paper {
-    constructor(id, location, title, numtokens, tags, authorAddress, 
-                authorName, prevId, nextId, state, userScore, reviewerScore, 
-                date, contractHelper) {
+    constructor(id, location, title, numtokens, tags, authorAddress, authorName, 
+                prevId, nextId, state, userScore, reviewerScore, date) {
         this.id = id;
         this.location = location;
         this.title = title;
@@ -16,7 +15,6 @@ class Paper {
         this.userScore = userScore;
         this.reviewerScore = reviewerScore;
         this.date = date;
-        this.contractHelper = contractHelper;
     }
 
     //update the paper

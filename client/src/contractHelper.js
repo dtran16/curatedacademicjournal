@@ -66,85 +66,52 @@ class ContractHelper {
         const reviewerScore = scores[2] / scores[3];
         const date = this.reviewContract.methods.getPaperDate(id).call();
         return new Paper(id, location, title, numTokens, tags, authorAddress, authorName,
-                        prevId, nextId, state, userScore, reviewerScore, date, this)
+                        prevId, nextId, state, userScore, reviewerScore, date);
     }
 
-    // getTokens = async () => {
-    //     return await this.tokenContract.methods.getToken().send({from: this.accounts[0] });
-    // }
+    //sign up as a verified user for a paper
+    addReviewerForPaper = async (id) => {
+        return await this.reviewContract.methods.addReviewerForPaper(id).send({from: this.accounts[0]});
+    }
+
+    //add comment
+    addComment = async (id, comment) => {
+        return await this.reviewContract.methods.addComment(id, comment).send({from: this.accounts[0]});
+    }
+
+    //get reviewers for a paper
+    getReviewers = async (id) => {
+        return await this.reviewContract.methods.getReviewersForPaper(id).call();
+    }
+
+    //add a new reviewer
+    addVerifiedUser = async (address) => {
+        return await this.reviewContract.methods.addVerifiedUser(address).send({from: this.accounts[0]});
+    }
+
+    //update the topics for a reviewer
+    addTopicsForReviewer = async (address, topics) => {
+        return await this.reviewContract.methods.addTopicsForReviewer(address).send({from: this.accounts[0]});
+    }
+
+    //reviewer vote on a paper
+    reviewerVoteOnPaper = async (id, vote) => {
+        return await this.reviewContract.methods.addVerifiedUser(id, vote).send({from: this.accounts[0]});
+    }
+
+    //user votes on a paper and stakes tokens
+    userVoteOnPaper = async (id, vote, amount) => {
+        return await this.reviewContract.methods.userVoteOnPaper(id, vote, amount).send({from: this.accounts[0]});
+    }
+
+    //revoke tokens from an old version of a paper
+    revokeTokens = async (id) => {
+        return await this.reviewContract.methods.revokeTokens(id).send({from: this.accounts[0]});
+    }
 
 
 
-    
-    
 
-    // web3 = new Web3("endpoint");
-    // archiveContract = new web3.eth.Contract(ReviewContract.abi, 'address', {
-    //     //defaults
-    // });
-    // tokenContract = new web3.eth.Contract(TokenContract.abi, 'address', {
-    //     //defaults
-    // });
-    // saleContract = new web3.eth.Contract(SaleContract.abi, 'address', {
-    //     //defaults
-    // });
-
-    // static purchase() {
-    //     saleContract.methods.buyTokens();
-    // }
-    // //getter and setter methods
-    // static getPaper() {
-    //     this.archiveCcontract.methods.getBook().call().then((result) => {
-    //         return new Paper(result[0],
-    //                         result[1],
-    //                         result[2],
-    //                         result[3],
-    //                         result[4],
-    //                         result[5],
-    //                         result[6],
-    //                         result[7],
-    //                         result[8]);
-    //     })
-    // }
-
-    // static stakeToken(paperID, amount) {
-    //     this.archiveCcontract.methods.stake().call();
-    // }
-
-
-    // getLimit() {
-    //     this.contract.methods.getLimit().call().then((result) => {
-    //         return result;
-    //     })
-    // }
-
-    // isReady(_id) {
-    //     this.contract.methods.isReady(_id).call().then((result) => {
-    //         return result;
-    //     })
-    // }
-
-    // getAuthor(_id) {
-    //     this.contract.methods.getAuthor(_id).call().then((result) => {
-    //         return result;
-    //     })
-    // }
-
-    // getTitle(_id) {
-    //     this.contract.methods.getTitle(_id).call().then((result) => {
-    //         return result;
-    //     })
-    // }
-
-    // getNumTokens(_id) {
-    //     this.contract.methods.getNumTokens(_id).call().then((result) => {
-    //         return result;
-    //     })
-    // }
-
-    // addPaper( _title, _location) {
-    //     this.contract.methods.addPaper(_title, _location).call();
-    // }
 
 }
 export default ContractHelper;
