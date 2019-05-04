@@ -1,0 +1,21 @@
+.rowContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100vw;
+    height:100px;
+    background: grey;
+    margin:auto;
+}
+
+.logoName {
+    font-size: 3rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color:white;
+    margin:auto 0 auto 25px;
+}
+
+.profile {
+
+}
