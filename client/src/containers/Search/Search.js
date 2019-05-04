@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import "./Search.css";
+import { get } from 'https';
 
 class Search extends React.Component {
     constructor(props) {
@@ -12,12 +13,8 @@ class Search extends React.Component {
     render() {
       return (
         <div className="searchBar">
-            <div className="inputContainer">
-                <input value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
-            </div>
-            <div className="button">
-                <input type="submit" onClick={this.handleSubmit} ></input>
-            </div>
+          <input className="inputContainer" maxLength="30" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
+          <button onClick={this.handleSubmit}>Search</button>
         </div>
       );
     }
