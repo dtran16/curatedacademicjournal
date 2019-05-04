@@ -17,5 +17,7 @@
 }
 
 .profile {
-
+    display: flex;
+    align-items: center;
+    margin:auto 25px auto 0;
 }

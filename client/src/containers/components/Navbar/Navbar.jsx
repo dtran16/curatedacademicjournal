@@ -9,13 +9,13 @@ const Navbar = () => {
     return (
         <div className="rowContainer">
             <div className="logoName">Curator</div>
-            <div className="profile">
-                <img
-                    src={profile}
-                    alt="Profile"
-                    height="50px"
-                    width="50px"
-                />
+            <div className="profile" >
+              <a href="http://www.yahoo.com">
+                <img src={profile}
+                     alt="Profile"
+                     height="50px"
+                     width="50px"/>
+              </a>
             </div>
         </div>
     )
