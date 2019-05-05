@@ -15,7 +15,7 @@ class Paper extends React.Component {
                 <h1>{this.props.title}</h1>
                 <h4>{this.props.authors}</h4>
                 <div className="abstract">
-                    
+                    <h2>Abstract</h2>
                     {this.props.bio}
                 </div>
                 <div className="options">
