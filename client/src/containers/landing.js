@@ -31,7 +31,7 @@ function Landing(Props) {
             authors='Emily White, Jane Moffit'
             fav='false'
             saved='false'/>
-        <Temp value={Props.val}/>
+        {/* <Temp value={Props.val}/> */}
         <Footer />
       </div>
 
