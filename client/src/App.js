@@ -61,7 +61,7 @@ class App extends Component {
     }
     return (
       // <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
-      <Form />
+      <Form accounts={this.state.accounts} helper={this.state.contractHelper}/>
     );
   }
 }
