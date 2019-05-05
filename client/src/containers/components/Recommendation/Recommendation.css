@@ -1,14 +1,17 @@
-/* h2 {
-
-} */
+h2, p {
+    font-family: 'Avenir Next', sans-serif;
+}
 
 .itemContainer {
     display: flex;
     flex-direction: column;
     width:50vw;
     margin: auto;
-    border-bottom: 1px;
-    padding: 10px;
+    border-style: solid;
+    border-color: #26273D;
+    border-width: 0 0 3px 0;
+    
+    padding: 20px 10px 20px 10px;
 }
 
 .itemHeader {
@@ -21,6 +24,9 @@
 .pressItem {
     padding-block-start: 1em;
     padding-block-end: 1em;
+    width:60px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .authors {

@@ -24,12 +24,12 @@ function Landing(Props) {
             date='April 21, 2019' 
             authors='Emily White, Jane Moffit'
             fav='false'
-            saved='false'/>
+            saved='true'/>
         <Recommendation 
             title='Metabolism in the Heart' 
             date='April 21, 2019' 
             authors='Emily White, Jane Moffit'
-            fav='false'
+            fav='true'
             saved='false'/>
         {/* <Temp value={Props.val}/> */}
         <Footer />
