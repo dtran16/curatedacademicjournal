@@ -8,10 +8,7 @@ import ContractHelper from "./contractHelper"
 import "./styles/App.css";
 
 //containers
-import Temp from "./containers/temp";
-import Navbar from "./containers/components/Navbar/Navbar";
-import Footer from "./containers/components/Footer/Footer";
-import Search from "./containers/Search/Search";
+import Landing from "./containers/landing";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
@@ -26,7 +23,7 @@ class App extends Component {
 
       //Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      
+
       //create contract helper class
       const contractHelper = new ContractHelper(web3, networkId, accounts);
 
@@ -43,18 +40,18 @@ class App extends Component {
   };
 
   runExample = async () => {
-    const { accounts, contractHelper } = this.state;
-
-    // Stores a given value, 5 by default.
-    //await contract.methods.set(2).send({ from: accounts[0] });
-
-    // Get the value from the contract to prove it worked.
-    //const response = await contractHelper.currentId();
-    await contractHelper.getTokens();
-    const response = await contractHelper.getUserBalance();
-
-    // Update state with the result.
-    this.setState({storageValue: response });
+    // const { accounts, contractHelper } = this.state;
+    //
+    // // Stores a given value, 5 by default.
+    // //await contract.methods.set(2).send({ from: accounts[0] });
+    //
+    // // Get the value from the contract to prove it worked.
+    // //const response = await contractHelper.currentId();
+    // //await contractHelper.getTokens();
+    // const response = await contractHelper.getUserBalance();
+    //
+    // // Update state with the result.
+    // this.setState({storageValue: response });
   };
 
   render() {
@@ -62,12 +59,7 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <div>
-        <Navbar />
-        <Search /> 
-        <Temp value={this.state.storageValue}/>
-        <Footer />
-      </div>
+      <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
     );
   }
 }

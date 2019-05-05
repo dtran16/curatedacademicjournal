@@ -181,9 +181,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.5.0;\n\n/**\n * @title ERC20 interface\n * @dev see https://eips.ethereum.org/EIPS/eip-20\n */\ninterface IERC20 {\n    function transfer(address to, uint256 value) external returns (bool);\n\n    function approve(address spender, uint256 value) external returns (bool);\n\n    function transferFrom(address from, address to, uint256 value) external returns (bool);\n\n    function totalSupply() external view returns (uint256);\n\n    function balanceOf(address who) external view returns (uint256);\n\n    function allowance(address owner, address spender) external view returns (uint256);\n\n    event Transfer(address indexed from, address indexed to, uint256 value);\n\n    event Approval(address indexed owner, address indexed spender, uint256 value);\n}\n",
-  "sourcePath": "/Users/olivialee/Desktop/CAJ/contracts/IERC20.sol",
+  "sourcePath": "/Users/dylantran/Desktop/curatedacademicjournal/contracts/IERC20.sol",
   "ast": {
-    "absolutePath": "/Users/olivialee/Desktop/CAJ/contracts/IERC20.sol",
+    "absolutePath": "/Users/dylantran/Desktop/curatedacademicjournal/contracts/IERC20.sol",
     "exportedSymbols": {
       "IERC20": [
         1030
@@ -1015,7 +1015,7 @@
     "src": "0:757:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/olivialee/Desktop/CAJ/contracts/IERC20.sol",
+    "absolutePath": "/Users/dylantran/Desktop/curatedacademicjournal/contracts/IERC20.sol",
     "exportedSymbols": {
       "IERC20": [
         1030
@@ -1851,8 +1851,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.9",
-  "updatedAt": "2019-05-04T06:46:25.947Z",
+  "schemaVersion": "3.0.6",
+  "updatedAt": "2019-05-04T23:57:28.651Z",
   "devdoc": {
     "details": "see https://eips.ethereum.org/EIPS/eip-20",
     "methods": {},

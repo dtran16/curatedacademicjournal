@@ -1,0 +1,28 @@
+/* h2 {
+
+} */
+
+.itemContainer {
+    display: flex;
+    flex-direction: column;
+    width:50vw;
+    margin: auto;
+    border-bottom: 1px;
+    padding: 10px;
+}
+
+.itemHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pressItem {
+    padding-block-start: 1em;
+    padding-block-end: 1em;
+}
+
+.authors {
+    padding-left: 15px;
+}
