@@ -36,6 +36,7 @@ class Search extends React.Component {
     }
 
     handleSubmit() {
+      console.log("clicked");
       //redirect data back
     
     }

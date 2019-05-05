@@ -12,13 +12,12 @@ h1 {
 .searchBar {
    display:flex;
    flex-direction: row;
-   /* width:30vw; */
-   /* justify-content: center; */
    align-content: center;
    background:#DAD1B3;
    width:50vw;
    margin:auto;
    padding:10px;
+   border-radius: 5px;
 }
 
 .inputContainer {
@@ -29,12 +28,7 @@ h1 {
 }
 
 
-.searchButton {
-   
-
+.searchButton:hover {
+   cursor: pointer;
 }
 
-.input {
-    /* width:100vw; */
-    /* height: 30px; */
-}
