@@ -1,16 +1,18 @@
 h2, p {
-    font-family: 'Avenir Next', sans-serif;
+    /* font-family: 'Avenir Next', sans-serif; */
+    font-weight:normal;
 }
 
 .itemContainer {
     display: flex;
     flex-direction: column;
-    width:50vw;
+    /* width:50vw; */
+    width:600px;
     margin: auto;
     border-style: solid;
     border-color: #26273D;
     border-width: 0 0 3px 0;
-    
+
     padding: 20px 10px 20px 10px;
 }
 

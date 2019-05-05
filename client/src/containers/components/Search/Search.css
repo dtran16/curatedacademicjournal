@@ -14,14 +14,16 @@ h1 {
    flex-direction: row;
    align-content: center;
    background:#DAD1B3;
-   width:50vw;
+   /* width:50vw; */
+   width:600px;
    margin:auto;
    padding:10px;
    border-radius: 5px;
 }
 
 .inputContainer {
-   width:50vw;
+   /* width:50vw; */
+   width:600px;
    /* height:20px; */
    background:#DAD1B3;
    border:none;
