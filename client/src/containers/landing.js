@@ -8,10 +8,10 @@ import Search from "./components/Search/Search";
 import Recommendation from './components/Recommendation/Recommendation';
 
 function Landing(Props) {
-    
+
     return (
       <div>
-        <Navbar />
+        <Navbar accounts={Props.accounts} helper={Props.helper}/>
         <Search />
         <Recommendation 
             title='Metabolism in the Heart' 
@@ -34,7 +34,7 @@ function Landing(Props) {
         <Temp value={Props.val}/>
         <Footer />
       </div>
-    
+
     )
 }
 
