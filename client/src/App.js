@@ -9,6 +9,7 @@ import "./styles/App.css";
 
 //containers
 import Landing from "./containers/landing";
+import ArticleProfile from "./containers/articleProfile";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
@@ -59,8 +60,9 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
-    );
+      // <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
+        <ArticleProfile/>
+      );
   }
 }
 

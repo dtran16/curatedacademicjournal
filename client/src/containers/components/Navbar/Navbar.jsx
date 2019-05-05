@@ -5,10 +5,10 @@ import "./Navbar.css";
 
 import profile from './profile.png';
 
-const Navbar = (Props) => {
+const Navbar = () => {
     return (
         <div className="rowContainer">
-            <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}><a>Indelve</a></div>
+            <div className="logoName">Indelve</div>
             <div className="rightAnchor">
                 <div className="upload">upload</div>
                 <div className="profile" >
@@ -22,18 +22,6 @@ const Navbar = (Props) => {
             </div>
         </div>
     )
-}
-async function get(acct, helper) {
-
-    // Stores a given value, 5 by default.
-    // await helper.methods.set(2).send({ from: acct[0] });
-
-    // Get the value from the contract to prove it worked.
-    //const response = await contractHelper.currentId();
-    await helper.getTokens();
-    const response = await helper.getUserBalance();
-
-    // send state back to the parent
 }
 
 export default Navbar;

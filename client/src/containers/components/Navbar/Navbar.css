@@ -6,7 +6,7 @@
     height:100px;
     background: #5F6E9F;
     margin:auto;
-    color:white;
+    color:#FBEFC5;
 }
 
 .rightAnchor {
@@ -20,6 +20,7 @@
     font-weight: 500;
     text-transform: lowercase;
     margin:auto 0 auto 25px;
+    color:#FBEFC5;
 }
 
 .logoName:hover {

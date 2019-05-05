@@ -1,0 +1,14 @@
+.sidebarContainer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+}
+
+.returnButton {
+
+}
+
+.previous {
+    width:250px;
+    background: #EEE7CE;
+}

@@ -1,0 +1,12 @@
+h1 {
+    font-family: 'roboto';
+    font-style: Regular;
+    font-size:36px;
+}
+
+.paperContainer {
+    display: flex;
+    flex-direction: column;
+    width:600px;
+    margin: auto;
+}
