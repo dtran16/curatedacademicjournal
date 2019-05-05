@@ -1,7 +1,38 @@
+h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
 h1 {
-    font-family: 'roboto';
-    font-style: Regular;
     font-size:36px;
+    line-height: 42px;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    /* padding-top:50px; */
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 18px;
+    line-height: 21px;
+}
+
+h4 {
+    font-size: 18px;
+    opacity: 0.5;
+
+    margin-block-start: 1em;
+}
+
+.abstract {
+    font-size: 18px;
+    line-height: 21px;  
+    padding: 5px 0 20px 0;
 }
 
 .paperContainer {
@@ -9,4 +40,18 @@ h1 {
     flex-direction: column;
     width:600px;
     margin: auto;
+    padding-top:50px;
+}
+
+.citations {
+    padding-bottom: 20px;
+}
+
+.addReview {
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.addReview:hover {
+    cursor: pointer;
 }
