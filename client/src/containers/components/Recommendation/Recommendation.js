@@ -29,7 +29,7 @@ function Recommendation(Props) {
                     height="18x"
                     width="18px"/> 
             </div>
-            <div>{authors}</div>
+            <div className='authors'>{authors}</div>
         </div>
     )
 }
