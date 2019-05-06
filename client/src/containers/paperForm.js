@@ -8,6 +8,14 @@ import Footer from './components/Footer/Footer';
 class PaperForm extends React.Component {
     constructor(props) {
       super(props);
+      this.state = {
+        helper: props.helper,
+        accounts: props.accounts,
+        storageValue: null,
+        rating: 0,
+        stake: 0,
+        comment: ""
+      };
     }
 
     render() {
