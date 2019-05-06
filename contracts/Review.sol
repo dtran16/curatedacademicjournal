@@ -73,8 +73,6 @@ contract Review {
         verifiedUsers[devAddress] = true;
         // impliment some sort of limit on staking tokens
         //tokenContract = CAJCoin(coinAddr);
-
-
     }
 
     function sample () public returns (bool) {
@@ -85,7 +83,8 @@ contract Review {
         _tags[1] = "deep learning";
         string memory _authorNameCreds = "Yanghua Jin, Jiakai Zhang, Minjun Li, Yingtao Tian, Huachun Zhu, Zhihao Fang";
         uint256 _prevId = 0;
-        addPaper(_title, _location, _tags, _authorNameCreds, _prevId);
+        papers[currentId] = Paper(currentId, _location, _title, _tags, new string[](0), msg.sender, _authorNameCreds, _prevId, 0, 0, 0, 0, 0, 0, block.timestamp);
+        currentId++;
 
         string memory yeet1 = "Style Transfer for Anime Sketches with Enhanced Residual U-net and Auxiliary Classifier GAN";
         string memory yeet2 = "";
@@ -94,8 +93,8 @@ contract Review {
         t[1] = "deep learning";
         string memory yeet3 = "Lvmin Zhang, Yi Ji, Xin Lin";
         uint256 yeet4 = 0;
-        addPaper(yeet1, yeet2, t, yeet3, yeet4);
-
+        papers[currentId] = Paper(currentId, yeet2, yeet1, t, new string[](0), msg.sender, yeet3, yeet4, 0, 0, 0, 0, 0, 0, block.timestamp);
+        currentId++;
 
        string memory one = "User-Guided Deep Anime Line Art Colorization with Conditional Adversarial Networks";
        string memory two = "";
@@ -104,7 +103,8 @@ contract Review {
        more[1] = "deep learning";
        string memory three = "Yuanzheng Ci, Xinzhu Ma, Zhihui Wang, Haojie Li, Zhongxuan Luo";
        uint256 four = 0;
-       addPaper(one, two, more, three, four);
+       papers[currentId] = Paper(currentId, two, one, more, new string[](0), msg.sender, three, four, 0, 0, 0, 0, 0, 0, block.timestamp);
+       currentId++;
        return true;
     }
 
@@ -339,6 +339,7 @@ contract Review {
     function setContract(address addr) public {
         assert(msg.sender == devAddress);
         tokenContract = CAJCoin(addr);
+        //sample();
     }
 
 }

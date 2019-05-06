@@ -57,6 +57,7 @@ class App extends Component {
     const response = await contractHelper.getUserBalance();
     //const res = await contractHelper.sample();
     // Update state with the result.
+    
     const id = await contractHelper.currentId();
     console.log("id", id);
     this.setState({storageValue: response });
