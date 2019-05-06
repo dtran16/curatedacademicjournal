@@ -11,26 +11,27 @@ class Landing extends React.Component {
     super(props);
   }
 
-  render() {
+  render(props) {
+     console.log(this.props.helper);
     return (
     <div>
       <Navbar accounts={this.props.accounts} helper={this.props.helper}/>
       <Search />
-      <Recommendation 
-          title='Metabolism in the Heart' 
-          date='April 21, 2019' 
+      <Recommendation
+          title='Metabolism in the Heart'
+          date='April 21, 2019'
           authors='Emily White, Jane Moffit'
           fav='false'
           saved='false'/>
-      <Recommendation 
-          title='Metabolism in the Heart' 
-          date='April 21, 2019' 
+      <Recommendation
+          title='Metabolism in the Heart'
+          date='April 21, 2019'
           authors='Emily White, Jane Moffit'
           fav='false'
           saved='true'/>
-      <Recommendation 
-          title='Metabolism in the Heart' 
-          date='April 21, 2019' 
+      <Recommendation
+          title='Metabolism in the Heart'
+          date='April 21, 2019'
           authors='Emily White, Jane Moffit'
           fav='true'
           saved='false'/>

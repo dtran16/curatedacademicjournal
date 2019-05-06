@@ -20,7 +20,7 @@ const routing = (
                 <li><Link to="/form">paperForm</Link></li>
             </ul>
             <Route exact path="/" component={App} />
-            <Route path="/landing" component={Landing} />
+            <Route path="/landing" component={Landing} render={()=><Landing helper={100}/>}/>
             <Route path="/articleprofile" component={ArticleProfile} />
             <Route path="/form" component={PaperForm} />
         </div>

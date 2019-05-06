@@ -1,5 +1,6 @@
 import React from "react";
 
+
 import Form from './components/Form/form.js';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -18,7 +19,7 @@ class PaperForm extends React.Component {
             </div>
         )
     }
-  
+
 }
 
 export default PaperForm;
