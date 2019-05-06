@@ -3,6 +3,7 @@ import "./Search.css";
 import { get } from 'https';
 
 import sButton from './search.png';
+import down from './down.png';
 
 class Search extends React.Component {
     constructor(props) {
@@ -23,6 +24,23 @@ class Search extends React.Component {
                 alt="Search"
                 height="25px"
                 width="25px"/>
+            </div>
+          </div>
+          <div className="searchLegend">
+            <div id="recc">recommended</div>
+            <div className="endAnchor">
+              <div className="filter" id="justify">Subject
+                <img src={down}
+                  alt="Search"
+                  height="20px"
+                  width="20px"/>
+              </div>
+              <div className="filter">Sort By
+                <img src={down}
+                  alt="Search"
+                  height="20px"
+                  width="20px"/>
+              </div>
             </div>
           </div>
         </div>

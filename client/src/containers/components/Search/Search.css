@@ -36,3 +36,34 @@
    cursor: pointer;
 }
 
+.searchLegend {
+   width:600px;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   color: #5F6E9F;
+   margin: 30px 30px 10px 30px;
+}
+
+#recc {
+   text-transform: uppercase;
+   font-size:20px;
+}
+
+.filter {
+   font-size:18px;
+   display: flex;
+   align-items: center;
+   width: 90px;
+   justify-content: space-between;
+}
+
+#justify {
+   position: relative;
+   right:15px;
+}
+.endAnchor {
+   display: flex;
+   justify-content: space-between;
+   width: 240px;
+}
