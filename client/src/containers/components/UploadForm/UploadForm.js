@@ -51,7 +51,7 @@ class UploadForm extends Component {
         // }
         return (
           <div className="bodyContainer">
-            <h1>Upload</h1>
+            <h1 id="uploadTitle">Upload</h1>
             <div id="form">
                 <form onSubmit={this.handleSubmit}>
                     <label>
