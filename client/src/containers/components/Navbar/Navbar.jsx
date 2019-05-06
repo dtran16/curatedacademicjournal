@@ -1,14 +1,12 @@
-import React from "react"
+import React from "react";
 import "./Navbar.css";
-
-// import { RowContainer } from '../components/ContainerStyles';
 
 import profile from './profile.png';
 
-const Navbar = () => {
+const Navbar = (Props) =>{
     return (
         <div className="rowContainer">
-            <div className="logoName">Indelve</div>
+            <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}><a>Indelve</a></div>
             <div className="rightAnchor">
                 <div className="upload">upload</div>
                 <div className="profile" >
@@ -22,6 +20,19 @@ const Navbar = () => {
             </div>
         </div>
     )
+}
+
+async function get(acct, helper) {
+
+    // Stores a given value, 5 by default.
+    // await helper.methods.set(2).send({ from: acct[0] });
+
+    // Get the value from the contract to prove it worked.
+    //const response = await contractHelper.currentId();
+    await helper.getTokens();
+    const response = await helper.getUserBalance();
+
+    // send state back to the parent
 }
 
 export default Navbar;
