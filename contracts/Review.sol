@@ -73,7 +73,9 @@ contract Review {
         verifiedUsers[devAddress] = true;
         // impliment some sort of limit on staking tokens
         //tokenContract = CAJCoin(coinAddr);
+        sample();
     }
+
 
     function sample () public returns (bool) {
         string memory _title = "Towards the Automatic Anime Characters Creation with Generative Adversarial Networks";
