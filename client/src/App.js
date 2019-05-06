@@ -81,18 +81,18 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      // <Temp />
+      <Temp />
       // <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
       // <ArticleProfile accounts={this.state.accounts} helper={this.state.contractHelper}/>
       // <PaperForm accounts={this.state.accounts} helper={this.state.contractHelper}/>
-        routing
+        // routing
       );
   }
 }
 
 export default App;
 
-const routing = (
+const routing = () => (
   <Router>
       <div>
           <ul>
@@ -107,4 +107,4 @@ const routing = (
           <Route path="/form" component={PaperForm} />
       </div>
   </Router>
-)
+);
