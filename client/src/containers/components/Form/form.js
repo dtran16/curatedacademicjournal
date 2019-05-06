@@ -6,6 +6,7 @@ import "./form.css";
 class Form extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
           helper: props.helper,
           accounts: props.accounts,
@@ -33,7 +34,7 @@ class Form extends Component {
         //                 accounts: this.state.accounts,
         //                 storageValue: response
         //             };
-        console.log(this.state.storageValue)
+        console.log("storage", this.state.storageValue)
     }
 
     handleChange1(event) {
