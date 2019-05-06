@@ -108,10 +108,5 @@ class ContractHelper {
     revokeTokens = async (id) => {
         return await this.reviewContract.methods.revokeTokens(id).send({from: this.accounts[0]});
     }
-
-
-
-
-
 }
 export default ContractHelper;
