@@ -23,7 +23,7 @@ class ArticleProfile extends React.Component {
 
         return(
             <div>
-                <Navbar/> 
+                <Navbar accounts={this.props.accounts} helper={this.props.helper}/>
                 {/* <div className="pageContainer"> */}
                     <Sidebar rating='' myRating='' review=''/>
                     <Paper title='Metabolism in the Heart' 
