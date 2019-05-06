@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, BrowserRouter as Router } from 'react-router-dom';
 
 //styles
 import './Recommendation.css';
@@ -40,7 +41,7 @@ class Recommendation extends React.Component {
         return(
             <div className='itemContainer'>
                 <div className="itemHeader">
-                    <a className="recTitle clickItem" href="http://localhost:3000/articleprofile">{this.props.title}</a>
+                    <div className="recTitle"><Link to="/articleprofile">{this.props.title}</Link></div>
                     <div className="recDate">{this.props.date}</div>
                     <div className='pressItem'>
                         <img className="clickItem" onClick={toggleFav}

@@ -1,6 +1,8 @@
 import React from "react";
-import "./Navbar.css";
+import {Link, BrowserRouter as Router } from 'react-router-dom';
 
+//styles
+import "./Navbar.css";
 import profile from './profile.png';
 
 const Navbar = (Props) => {
@@ -8,7 +10,7 @@ const Navbar = (Props) => {
         <div className="rowContainer">
             <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}>Indelve</div>
             <div className="rightAnchor">
-                <a className="upload" href="http://localhost:3000/upload">upload</a>
+                <div className="upload"><Link to="/upload">upload</Link></div>
                 <div className="profile" >
                 <a href="http://www.yahoo.com">
                     <img src={profile}
