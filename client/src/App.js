@@ -12,6 +12,7 @@ import Temp from './containers/temp';
 import Landing from "./containers/landing";
 import ArticleProfile from "./containers/articleProfile";
 import Form from "./containers/components/Form/form"
+import Upload from "./containers/upload";
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
@@ -65,8 +66,9 @@ class App extends Component {
       // <Temp />
       // <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
       // <ArticleProfile accounts={this.state.accounts} helper={this.state.contractHelper}/>
-      <Form accounts={this.state.accounts} helper={this.state.contractHelper}/>
-      );
+      // <Form accounts={this.state.accounts} helper={this.state.contractHelper}/>
+      <Upload val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
+    )
   }
 }
 
