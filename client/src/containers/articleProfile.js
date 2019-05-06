@@ -19,6 +19,8 @@ class ArticleProfile extends React.Component {
     //Props for rating: avg rating, my rating, review/comments
     //Props from database: previous versions
 
+    //props above should be pulled from account info, but temp placed info for frontend dev
+
     render() {
 
         return(

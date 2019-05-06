@@ -6,7 +6,7 @@ import profile from './profile.png';
 const Navbar = (Props) =>{
     return (
         <div className="rowContainer">
-            <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}><a>Indelve</a></div>
+            <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}>Indelve</div>
             <div className="rightAnchor">
                 <div className="upload">upload</div>
                 <div className="profile" >
