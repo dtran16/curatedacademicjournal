@@ -43,10 +43,3 @@ class ArticleProfile extends React.Component {
 }
 
 export default ArticleProfile;
-
-
-/*  <Navbar/>
-    <Sidebar rating={props.avgRating} myRating={props.rating} review={props.review}/>
-    <Paper title={props.title} author={rops.author} bio={props.bio} citation={props.citation}/>
-    <Footer />
-*/

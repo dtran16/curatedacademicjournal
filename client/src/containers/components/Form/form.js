@@ -30,10 +30,6 @@ class Form extends Component {
                         accounts: this.state.accounts,
                         storageValue: response
                     });
-        // this.state = { helper: this.state.helper,
-        //                 accounts: this.state.accounts,
-        //                 storageValue: response
-        //             };
         console.log("storage", this.state.storageValue)
     }
 
@@ -60,33 +56,38 @@ class Form extends Component {
         }
     //help i need to get thefucking title
         return (
-          <div>
-            <div className="title">
-                <h1>Metabolism in the Heart</h1>
-                <p> [Authors] </p>
-                <h3>Current Balance: </h3>
+          <div className="bodyContainer">
+            <div className="infoContainer">
+                <h1>{this.props.title}</h1>
+                <h4>{this.props.authors}</h4>
+                {/* <h3>Current Balance: </h3> */}
             </div>
-            <div id="info">
-                <h3> MY REVIEW </h3>
-                <h3>My Balance: {this.state.storageValue} </h3>
+            <div>
+                <h2>MY REVIEW</h2>
             </div>
-            <div id="form">
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                      Rating of the Paper
-                      <input type="text" onChange={this.handleChange1} /> <p>/10</p>
-                    </label>
-                    <label>
-                        Stake
-                      <input type="text" onChange={this.handleChange2} />
-                    </label>
-                    <label>
-                        Comments/Feedback
-                      <input type="text" onChange={this.handleChange3} />
-                    </label>
-                    <input type="submit" value="Submit" />
-                  </form>
-            </div>
+            <form id="formContainer" onSubmit={this.handleSubmit}>
+                <label>
+                  <div>Rating of the Paper</div>
+                  <div>
+                    <input type="text" onChange={this.handleChange1}/> /10
+                  </div>
+                </label>
+                <label>
+                  <div>Stake</div>
+                  <div>
+                    <input type="text" onChange={this.handleChange2}/> Tokens
+                    <div className="rightAnchor" id="subWrite">My Remaining Balance: {this.state.storageValue} Tokens</div>
+                  </div>
+                </label>
+                <label id="twoLiner">
+                  <div id="lineBuffer">Comments/Feedback</div>
+                  <input type="text" onChange={this.handleChange3} />
+                </label>
+                <div className="rightAnchor">
+                  <input id="subButton" type="submit" value="CONTINUE"/>
+                </div>
+                
+            </form>
           </div>
         )
     }

@@ -6,19 +6,36 @@ h1 {
    display: flex;
    flex-direction: column;
    align-items: left;
-   margin-top:10vh;
-   margin-left:100vh
 }
 
-.searchBar {
-   display:flex;
+#formContainer {
+   display: flex;
+   flex-direction: column;
+   height: 30vh;
+   padding-top: 20px; 
+   justify-content: space-between;
+}
+
+label {
+   display: flex;
    flex-direction: row;
-   align-content: center;
-   background:#DAD1B3;
-   width:50vw;
-   margin:auto;
-   padding:10px;
-   border-radius: 5px;
+   justify-content: space-between;
+   font-size:20px;
+   color: #26273D;
+}
+
+input {
+   border: none;
+   border-bottom: 1px solid #26273D;
+}
+
+#twoLiner {
+   display: flex;
+   flex-direction: column;
+}
+
+#lineBuffer {
+   padding-bottom: 20px;
 }
 
 .inputContainer {
@@ -28,7 +45,22 @@ h1 {
    border:none;
 }
 
+.rightAnchor {
+   display: flex;
+   justify-content: flex-end;
+}
 
-.searchButton:hover {
-   cursor: pointer;
+#subWrite {
+   padding-top: 5px;
+   font-size: 13px;
+   color: #5F6E9F;
+}
+
+#subButton {
+   color: white;
+   border-bottom:none;
+   background: #5F6E9F;
+   width: 125px;
+   font-size: 20px;
+   padding:10px;
 }

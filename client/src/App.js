@@ -3,11 +3,11 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import getWeb3 from "./utils/getWeb3";
 import ReviewContract from "./contracts/Review.json";
 import ContractHelper from "./contractHelper"
-
+import * as serviceWorker from './serviceWorker';
 
 //styles
 import "./styles/App.css";
-import * as serviceWorker from './serviceWorker';
+import "./styles/page.css";
 
 //containers
 import Temp from './containers/temp';
@@ -60,10 +60,7 @@ class App extends Component {
     this.setState({storageValue: response });
   };
 
-
-
   render() {
-
 
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
@@ -88,37 +85,13 @@ class App extends Component {
               <Route path='/upload' render={(Props) => <Upload val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>} />
           </div>
       </Router>
-
-      </div>
-
-
-      // <ArticleProfile accounts={this.state.accounts} helper={this.state.contractHelper}/>
-      // <PaperForm accounts={this.state.accounts} helper={this.state.contractHelper}/>
-      );
+    </div>
+    );
   }
 }
-//
-//
 export default App;
-// ReactDOM.render(routing, document.getElementById('root'));
 //
 // // If you want your app to work offline and load faster, you can change
 // // unregister() to register() below. Note this comes with some pitfalls.
 // // Learn more about service workers: http://bit.ly/CRA-PWA
 // serviceWorker.unregister();
-// const routing = () => (
-//   <Router>
-//       <div>
-//           <ul>
-//               <li><Link to="/">default</Link></li>
-//               <li><Link to="/landing">landing</Link></li>
-//               <li><Link to="/articleprofile">articleProfile</Link></li>
-//               <li><Link to="/form">paperForm</Link></li>
-//           </ul>
-//           <Route exact path="/" component={Temp} />
-//           <Route path="/landing" component={Landing} />
-//           <Route path="/articleprofile" component={ArticleProfile} />
-//           <Route path="/form" component={PaperForm} />
-//       </div>
-//   </Router>
-// );
