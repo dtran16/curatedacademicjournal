@@ -1,7 +1,9 @@
-h2, p {
-    /* font-family: 'Avenir Next', sans-serif; */
+h1, h2, p {
+    font-family: 'Proxima Nova', sans-serif;
     font-weight:normal;
 }
+
+
 
 .itemContainer {
     display: flex;
