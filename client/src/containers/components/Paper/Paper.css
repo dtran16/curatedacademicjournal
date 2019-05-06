@@ -47,4 +47,13 @@ h4 {
 
 .addReview:hover {
     cursor: pointer;
+    /* text-decoration: none; */
+}
+a {
+    text-decoration: none;
+}
+
+a:visited { 
+    color: #26273D;
+    text-decoration: none;
 }

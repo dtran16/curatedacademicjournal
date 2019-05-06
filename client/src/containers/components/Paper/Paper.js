@@ -36,7 +36,7 @@ class Paper extends React.Component {
                 </div>
 
                 <div className="addReview" onClick={handleReviewClick}>
-                    + My Review
+                    <a href="http://localhost:3000/form">+ My Review</a>
                 </div>
             </div>
         )
