@@ -2,11 +2,12 @@ h1 {
    font-weight:400;
 }
 
-.searchContainer {
+.title {
    display: flex;
    flex-direction: column;
-   align-items: center;
+   align-items: left;
    margin-top:10vh;
+   margin-left:100vh
 }
 
 .searchBar {

@@ -51,7 +51,8 @@ class Form extends Component {
 
       handleSubmit(event) {
         console.log(this.state.rating, this.state.stake, this.state.comment);
-        
+        //await this.state.helper.userVoteOnPaper([id], this.state.rating, this.state.stake);
+        //await this.state.helper.addComment([id], this.state.comment);
         event.preventDefault();
       }
 
@@ -63,7 +64,7 @@ class Form extends Component {
         return (
           <div>
             <Navbar accounts={this.state.accounts} helper={this.state.helper}/>
-            <div id="title">
+            <div className="title">
                 <h1>Metabolism in the Heart</h1>
                 <p> [Authors] </p>
                 <h3>Current Balance: </h3>
@@ -76,15 +77,15 @@ class Form extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <label>
                       Rating of the Paper
-                      <input type="text" value={this.state.rating} onChange={this.handleChange1} />
+                      <input type="text" onChange={this.handleChange1} /> <p>/10</p>
                     </label>
                     <label>
                         Stake
-                      <input type="text" value={this.state.stake} onChange={this.handleChange2} />
+                      <input type="text" onChange={this.handleChange2} />
                     </label>
                     <label>
                         Comments/Feedback
-                      <input type="text" value={this.state.comment} onChange={this.handleChange3} />
+                      <input type="text" onChange={this.handleChange3} />
                     </label>
                     <input type="submit" value="Submit" />
                   </form>
@@ -94,9 +95,6 @@ class Form extends Component {
 
         )
     }
-
-}
-async function submit(helper) {
 
 }
 
