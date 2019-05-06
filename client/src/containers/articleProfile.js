@@ -21,7 +21,7 @@ class ArticleProfile extends React.Component {
 
     //props above should be pulled from account info, but temp placed info for frontend dev
 
-    render() {
+    render(props) {
         let {accounts, helper} = this.props
         if(accounts === undefined || helper == undefined){
           console.log('undefined props')
