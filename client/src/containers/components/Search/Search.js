@@ -11,13 +11,13 @@ class Search extends React.Component {
         inputValue: ''
       };
     }
-  
+
     render() {
       return (
         <div className="searchContainer">
-          <h1>A Peer-Curated Academic Journal</h1>
+          <div className="landingTitle">A Peer-Curated Academic Journal</div>
           <div className="searchBar">
-            <input className="inputContainer" maxLength="30" value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
+            <input className="inputContainer"  value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)}/>
             <div className="searchButton" onClick={this.handleSubmit}>
               <img src={sButton}
                 alt="Search"
@@ -28,7 +28,7 @@ class Search extends React.Component {
         </div>
       );
     }
-  
+
     updateInputValue(evt) {
       this.setState({
         inputValue: evt.target.value
@@ -38,7 +38,7 @@ class Search extends React.Component {
     handleSubmit() {
       console.log("clicked");
       //redirect data back
-    
+
     }
   };
 

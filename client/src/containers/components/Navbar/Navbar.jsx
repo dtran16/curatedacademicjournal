@@ -1,14 +1,12 @@
-import React from "react"
+import React from "react";
 import "./Navbar.css";
-
-// import { RowContainer } from '../components/ContainerStyles';
 
 import profile from './profile.png';
 
-const Navbar = (Props) => {
+const Navbar = (Props) =>{
     return (
         <div className="rowContainer">
-            <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}><a>Indelve</a></div>
+            <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}>Indelve</div>
             <div className="rightAnchor">
                 <div className="upload">upload</div>
                 <div className="profile" >
@@ -23,6 +21,7 @@ const Navbar = (Props) => {
         </div>
     )
 }
+
 async function get(acct, helper) {
 
     // Stores a given value, 5 by default.

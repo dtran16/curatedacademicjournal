@@ -1,14 +1,29 @@
-/* h2 {
+.recTitle, .recDate {
+    font-family: 'Proxima Nova', sans-serif;
+    font-weight: normal;
+    color: #26273D;
+}
 
-} */
+.recTitle {
+    font-size: 24px;
+}
+
+.recDate {
+    font-size: 18px;
+}
+
 
 .itemContainer {
     display: flex;
     flex-direction: column;
-    width:50vw;
+    /* width:50vw; */
+    width:600px;
     margin: auto;
-    border-bottom: 1px;
-    padding: 10px;
+    border-style: solid;
+    border-color: #53556d;
+    border-width: 0 0 3px 0;
+
+    padding: 20px 10px 20px 10px;
 }
 
 .itemHeader {
@@ -21,6 +36,9 @@
 .pressItem {
     padding-block-start: 1em;
     padding-block-end: 1em;
+    width:60px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .authors {
