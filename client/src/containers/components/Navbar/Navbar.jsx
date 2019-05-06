@@ -1,32 +1,36 @@
-import React, { Component } from "react";
+import React from "react";
+import {Link, BrowserRouter as Router } from 'react-router-dom';
+
+//styles
 import "./Navbar.css";
-
 import profile from './profile.png';
+import bookMark from './bookmark.png';
 
-class Navbar extends Component {
-    constructor(Props) {
-        super(Props);
-    }
-
-    render () {
-        
-        return (
-            <div className="rowContainer">
-                <div className="logoName leftAnchor" onClick={() => get(this.Props.accounts, this.Props.helper)}>Indelve</div>
-                <div className="rightAnchor">
-                    <div className="upload">upload</div>
-                    <div className="profile" >
-                    <a href="http://www.yahoo.com">
-                        <img src={profile}
-                            alt="Profile"
-                            height="50px"
-                            width="50px"/>
-                    </a>
+const Navbar = (Props) => {
+    return (
+        <div className="rowContainer">
+            <div className="logoContainer">
+                <div className="tokenTap" onClick={() => get(Props.accounts, Props.helper)}>
+                    <img src={bookMark}
+                        alt="bookmark; click for tokens"
+                        height="45px"
+                        width="45px"/>
                 </div>
-                </div>
+                <div className="logoName leftAnchor"><Link to="/">Indelve</Link></div>
             </div>
-        )   
-    }
+            <div className="rightAnchor">
+                <div className="upload"><Link to="/upload">upload</Link></div>
+                <div className="profile" >
+                <a href="http://www.yahoo.com">
+                    <img src={profile}
+                        alt="Profile"
+                        height="50px"
+                        width="50px"/>
+                </a>
+            </div>
+            </div>
+        </div>
+    )   
 }
 
 async function get(acct, helper) {

@@ -71,15 +71,18 @@ class UploadForm extends Component {
                       <input type="text"  value = {this.state.previousId} onChange = {this.handleChangePrevId} />
                     </label>
                     <label>
-                        Upload Pdf
-                        <input type="file" value = {this.state.location} onChange = {this.handleChangeLocation}/>
+                        Upload PDF
+                        <input id="file" type="file" value = {this.state.location} onChange = {this.handleChangeLocation}/>
                     </label>
-                    <label>
+                    <label id="lastItem">
                         I verify that the above information is correct
                         <input type="checkbox" value = {this.state.verify} onChange = {this.handleVerify}/>
                     </label>
                   </form>
-                  <button onClick = {() => handleSubmit(this.state)}>Submit</button>
+                  <div className="rightAnchor">
+                    <button id="subButton" onClick = {() => handleSubmit(this.state)}>Submit</button>
+                    {/* <input id="subButton" type="submit" value="CONTINUE"/> */}
+                  </div>
             </div>
           </div>
 

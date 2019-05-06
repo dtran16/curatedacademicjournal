@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, BrowserRouter as Router } from 'react-router-dom';
 
 //styles
 import "./Paper.css";
@@ -34,10 +35,17 @@ class Paper extends React.Component {
                     <h3>Citations</h3>
                     <p>{this.props.citation}</p>
                 </div>
+<<<<<<< HEAD
 
                 <div className="addReview" onClick={handleReviewClick}>
                     <a href="http://localhost:3000/form">+ My Review</a>
                 </div>
+=======
+                <div className="addReview"><Link to="/form">+ My Review</Link></div>
+                {/* <a className="addReview" onClick={handleReviewClick} href="http://localhost:3000/form">
+                    + My Review
+                </a> */}
+>>>>>>> Staging
             </div>
         )
     }

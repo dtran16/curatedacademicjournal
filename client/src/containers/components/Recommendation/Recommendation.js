@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, BrowserRouter as Router } from 'react-router-dom';
 
 //styles
 import './Recommendation.css';
@@ -18,33 +19,37 @@ class Recommendation extends React.Component {
 
         let favorite = star, marked = bMark;
         
-        if (this.fav == 'true') {
-            this.favorite = starFilled;
+        if (this.props.fav == 'true') {
+            // console.log(this.props.fav);
+            favorite = starFilled;
         }
-        if (this.saved == 'true') {
-            this.marked = bMarkFilled;
+        if (this.props.saved == 'true') {
+            // console.log(this.props.saved);
+            marked = bMarkFilled;
         }
 
         function toggleFav() {
+            // favorite = starFilled;
             console.log("clicked favorite")
         }
 
         function toggleMark() {
+            // console.log(this.props.saved);
             console.log("clicked bookmark")
         }
 
         return(
             <div className='itemContainer'>
                 <div className="itemHeader">
-                    <div className="recTitle">{this.props.title}</div>
+                    <div className="recTitle"><Link to="/articleprofile">{this.props.title}</Link></div>
                     <div className="recDate">{this.props.date}</div>
                     <div className='pressItem'>
-                        <img onClick={toggleFav}
+                        <img className="clickItem" onClick={toggleFav}
                             src={favorite}
                             alt="Favorite"
                             height="20px"
                             width="20px"/>
-                        <img onClick={toggleMark}
+                        <img className="clickItem" onClick={toggleMark}
                             src={marked}
                             alt="Bookmarked"
                             height="18x"
