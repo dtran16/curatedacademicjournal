@@ -62,10 +62,10 @@ class App extends Component {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <Temp />
+      // <Temp />
       // <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
       // <ArticleProfile accounts={this.state.accounts} helper={this.state.contractHelper}/>
-      // <Form accounts={this.state.accounts} helper={this.state.contractHelper}/>
+      <Form accounts={this.state.accounts} helper={this.state.contractHelper}/>
       );
   }
 }
