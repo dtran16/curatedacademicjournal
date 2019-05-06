@@ -1,3 +1,14 @@
 #uploadTitle {
     color: #5F6E9F;
+    padding-block-end: 25px;
+    text-transform: uppercase;
+}
+
+#file {
+    border-bottom: none;
+    width: inherit;
+}
+
+label {
+    padding-bottom: 18px;
 }
