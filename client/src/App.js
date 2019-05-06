@@ -3,9 +3,12 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import getWeb3 from "./utils/getWeb3";
 import ReviewContract from "./contracts/Review.json";
 import ContractHelper from "./contractHelper"
+import ReactDOM from 'react-dom';
+
 
 //styles
 import "./styles/App.css";
+import * as serviceWorker from './serviceWorker';
 
 //containers
 import Temp from './containers/temp';
@@ -43,55 +46,64 @@ class App extends Component {
   };
 
   runExample = async () => {
-    // const { accounts, contractHelper } = this.state;
-    //
-    // // Stores a given value, 5 by default.
-    // //await contract.methods.set(2).send({ from: accounts[0] });
-    //
-    // // Get the value from the contract to prove it worked.
-    // //const response = await contractHelper.currentId();
-    // //await contractHelper.getTokens();
-    // const response = await contractHelper.getUserBalance();
-    //
-    // // Update state with the result.
-    // this.setState({storageValue: response });
+    const { accounts, contractHelper } = this.state;
+
+    // Stores a given value, 5 by default.
+    //await contract.methods.set(2).send({ from: accounts[0] });
+
+    // Get the value from the contract to prove it worked.
+    //const response = await contractHelper.currentId();
+    //await contractHelper.getTokens();
+    const response = await contractHelper.getUserBalance();
+
+    // Update state with the result.
+    this.setState({storageValue: response });
   };
 
-  
+
 
   render() {
-    const routing = (
+
+
+    if (!this.state.web3) {
+      return <div>Loading Web3, accounts, and contract...</div>;
+    }
+    console.log(this.state.storageValue)
+    return (
+
+     <div>
       <Router>
           <div>
               <ul>
-                  <li><Link to="/">default</Link></li>
+                <li><Link to="/">default</Link></li>
                   <li><Link to="/landing">landing</Link></li>
                   <li><Link to="/articleprofile">articleProfile</Link></li>
                   <li><Link to="/form">paperForm</Link></li>
               </ul>
-              <Route exact path="/" component={Temp} />
-              <Route path="/landing" component={Landing} />
-              <Route path="/articleprofile" component={ArticleProfile} />
-              {/* <Route path="/form" component={PaperForm} /> */}
+              <Route exact path="/" render={(Props) => <Temp value={this.state.storageValue} {...Props}/>}/>
+              <Route path="/landing" render={(Props) => <Landing accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>}/>
+              <Route path="/articleprofile" render={(Props) => <ArticleProfile accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>}/>
+               <Route path="/form" render={(Props) => <PaperForm accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>}/>
           </div>
       </Router>
-    )
-    
-    if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
-    return (
-      // <Temp />
-      // <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
+
+      </div>
+
+
       // <ArticleProfile accounts={this.state.accounts} helper={this.state.contractHelper}/>
       // <PaperForm accounts={this.state.accounts} helper={this.state.contractHelper}/>
-        routing
       );
   }
 }
-
+//
+//
 export default App;
-
+// ReactDOM.render(routing, document.getElementById('root'));
+//
+// // If you want your app to work offline and load faster, you can change
+// // unregister() to register() below. Note this comes with some pitfalls.
+// // Learn more about service workers: http://bit.ly/CRA-PWA
+// serviceWorker.unregister();
 // const routing = () => (
 //   <Router>
 //       <div>

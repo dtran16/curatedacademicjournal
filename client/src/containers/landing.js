@@ -12,10 +12,15 @@ class Landing extends React.Component {
   }
 
   render(props) {
-     console.log(this.props.helper);
+      let {accounts, helper} = this.props
+      if(accounts === undefined || helper == undefined){
+        console.log('undefined props')
+      } else {
+        console.log('defined props')
+      }
     return (
     <div>
-      <Navbar accounts={this.props.accounts} helper={this.props.helper}/>
+      <Navbar accounts={accounts} helper={helper}/>
       <Search />
       <Recommendation
           title='Metabolism in the Heart'
