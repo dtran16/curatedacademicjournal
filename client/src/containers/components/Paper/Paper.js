@@ -16,7 +16,7 @@ class Paper extends React.Component {
         }
 
         return (
-            <div className="paperContainer"> 
+            <div className="bodyContainer"> 
                 <h1>{this.props.title}</h1>
                 <h4>{this.props.authors}</h4>
 

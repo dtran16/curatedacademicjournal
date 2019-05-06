@@ -51,8 +51,12 @@ class PaperForm extends React.Component {
         }
         return(
             <div>
-                <Navbar accounts={accounts} helper={helper}/>
-                <Form accounts={accounts} helper={helper}/>
+                <Navbar accounts={accounts} helper={helper} />
+                <Form 
+                  accounts={accounts} 
+                  helper={helper} 
+                  title="Metabolism in the Heart"
+                  authors="Emily White, Jane Moffit"/>
                 <Footer />
             </div>
         )

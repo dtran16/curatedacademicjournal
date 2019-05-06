@@ -1,12 +1,5 @@
 import React from "react"
 
-
-//containers
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import Search from "./components/Search/Search";
-import Recommendation from './components/Recommendation/Recommendation';
-
 class Temp extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +26,6 @@ class Temp extends React.Component {
             </p>
             <div>The stored value is: {value}</div>
           </div>
-
     )
   }
 }

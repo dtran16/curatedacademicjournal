@@ -1,4 +1,11 @@
-.pageContainer {
+.bodyContainer {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width:600px;
+    margin: auto;
+    padding-top:50px;
 }

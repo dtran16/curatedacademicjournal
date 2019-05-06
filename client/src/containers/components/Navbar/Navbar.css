@@ -35,6 +35,10 @@
     padding-right:15px;
 }
 
+.upload:hover {
+    cursor: pointer;
+}
+
 .profile {
     display: flex;
     align-items: center;
