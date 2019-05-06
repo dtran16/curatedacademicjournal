@@ -11,7 +11,7 @@ class Search extends React.Component {
         inputValue: ''
       };
     }
-  
+
     render() {
       return (
         <div className="searchContainer">
@@ -28,7 +28,7 @@ class Search extends React.Component {
         </div>
       );
     }
-  
+
     updateInputValue(evt) {
       this.setState({
         inputValue: evt.target.value
@@ -38,7 +38,7 @@ class Search extends React.Component {
     handleSubmit() {
       console.log("clicked");
       //redirect data back
-    
+
     }
   };
 

@@ -5,6 +5,7 @@ import './styles/index.css';
 import App from './App';
 import Landing from './containers/landing';
 import ArticleProfile from './containers/articleProfile';
+import PaperForm from './containers/paperForm'
 
 
 import * as serviceWorker from './serviceWorker';
@@ -16,10 +17,12 @@ const routing = (
                 <li><Link to="/">default</Link></li>
                 <li><Link to="/landing">landing</Link></li>
                 <li><Link to="/articleprofile">articleProfile</Link></li>
+                <li><Link to="/form">paperForm</Link></li>
             </ul>
             <Route exact path="/" component={App} />
             <Route path="/landing" component={Landing} />
             <Route path="/articleprofile" component={ArticleProfile} />
+            <Route path="/form" component={PaperForm} />
         </div>
     </Router>
 )
