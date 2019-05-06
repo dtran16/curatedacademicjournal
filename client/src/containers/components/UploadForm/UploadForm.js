@@ -74,7 +74,7 @@ class UploadForm extends Component {
                         Upload PDF
                         <input id="file" type="file" value = {this.state.location} onChange = {this.handleChangeLocation}/>
                     </label>
-                    <label>
+                    <label id="lastItem">
                         I verify that the above information is correct
                         <input type="checkbox" value = {this.state.verify} onChange = {this.handleVerify}/>
                     </label>

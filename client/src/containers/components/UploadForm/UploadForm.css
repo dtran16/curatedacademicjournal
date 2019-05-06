@@ -2,13 +2,22 @@
     color: #5F6E9F;
     padding-block-end: 25px;
     text-transform: uppercase;
+    border-block-end: solid;
+    margin-block-end: 25px;
+    border-bottom-color:#FBEFC5;
 }
 
 #file {
     border-bottom: none;
-    width: inherit;
+    width: 160px;
 }
 
 label {
     padding-bottom: 18px;
+}
+
+#lastItem {
+    padding-top: 15px; 
+    font-size: 18px;
+    color:#26273D;
 }
