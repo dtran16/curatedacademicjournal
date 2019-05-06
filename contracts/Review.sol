@@ -87,24 +87,24 @@ contract Review {
         uint256 _prevId = 0;
         addPaper(_title, _location, _tags, _authorNameCreds, _prevId);
 
-        _title = "Style Transfer for Anime Sketches with Enhanced Residual U-net and Auxiliary Classifier GAN";
-        _location = "";
+        string memory yeet1 = "Style Transfer for Anime Sketches with Enhanced Residual U-net and Auxiliary Classifier GAN";
+        string memory yeet2 = "";
         string[] memory t;
         t[0] = "anime";
         t[1] = "deep learning";
-        _authorNameCreds = "Lvmin Zhang, Yi Ji, Xin Lin";
-        _prevId = 0;
-        addPaper(_title, _location, t, _authorNameCreds, _prevId);
+        string memory yeet3 = "Lvmin Zhang, Yi Ji, Xin Lin";
+        uint256 yeet4 = 0;
+        addPaper(yeet1, yeet2, t, yeet3, yeet4);
 
 
-       _title = "User-Guided Deep Anime Line Art Colorization with Conditional Adversarial Networks";
-       _location = "";
+       string memory one = "User-Guided Deep Anime Line Art Colorization with Conditional Adversarial Networks";
+       string memory two = "";
        string[] memory more;
        more[0] = "anime";
        more[1] = "deep learning";
-       _authorNameCreds = "Yuanzheng Ci, Xinzhu Ma, Zhihui Wang, Haojie Li, Zhongxuan Luo";
-       _prevId = 0;
-       addPaper(_title, _location, more, _authorNameCreds, _prevId);
+       string memory three = "Yuanzheng Ci, Xinzhu Ma, Zhihui Wang, Haojie Li, Zhongxuan Luo";
+       uint256 four = 0;
+       addPaper(one, two, more, three, four);
        return true;
     }
 

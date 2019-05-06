@@ -33,7 +33,6 @@ class App extends Component {
       const contractHelper = new ContractHelper(web3, networkId, accounts);
       this.setState({count: this.state.count + 1});
       console.log("count", this.state.count);
-      //await contractHelper.sample();
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contractHelper: contractHelper}, this.runExample);
@@ -56,8 +55,10 @@ class App extends Component {
     //const response = await contractHelper.currentId();
     //await contractHelper.getTokens();
     const response = await contractHelper.getUserBalance();
-
+    //const res = await contractHelper.sample();
     // Update state with the result.
+    const id = await contractHelper.currentId();
+    console.log("id", id);
     this.setState({storageValue: response });
   };
 
