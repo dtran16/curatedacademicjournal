@@ -10,13 +10,13 @@ import down from './down.png';
 function Sidebar() {
     return(
         <div className="sidebarContainer">
-            <Link to="/landing">
+            <Link to="/">
                 <div className="returnContainer">
                     <img
                         src={leftArrow}
                         alt="return button"
                         height="25px"
-                        width="25px"/>  
+                        width="25px"/>
                     <div className="return">Back to Search Results</div>
                 </div>
             </Link>
@@ -27,7 +27,7 @@ function Sidebar() {
                     src={down}
                     alt="return button"
                     height="20px"
-                    width="20px"/>  
+                    width="20px"/>
             </a>
         </div>
     )

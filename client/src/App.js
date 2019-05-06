@@ -71,15 +71,7 @@ class App extends Component {
      <div>
       <Router>
           <div>
-              <ul>
-                <li><Link to="/">default</Link></li>
-                  <li><Link to="/landing">landing</Link></li>
-                  <li><Link to="/articleprofile">articleProfile</Link></li>
-                  <li><Link to="/form">paperForm</Link></li>
-                  <li><Link to="/upload">paperUpload</Link></li>
-              </ul>
-              <Route exact path="/" render={(Props) => <Temp value={this.state.storageValue} {...Props}/>}/>
-              <Route path="/landing" render={(Props) => <Landing accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>}/>
+              <Route exact path="/" render={(Props) => <Landing accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>}/>
               <Route path="/articleprofile" render={(Props) => <ArticleProfile accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>}/>
               <Route path="/form" render={(Props) => <PaperForm accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>}/>
               <Route path='/upload' render={(Props) => <Upload val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper} {...Props}/>} />
@@ -90,6 +82,13 @@ class App extends Component {
   }
 }
 export default App;
+// <ul>
+//   <li><Link to="/">default</Link></li>
+//     <li><Link to="/landing">landing</Link></li>
+//     <li><Link to="/articleprofile">articleProfile</Link></li>
+//     <li><Link to="/form">paperForm</Link></li>
+//     <li><Link to="/upload">paperUpload</Link></li>
+// </ul>
 //
 // // If you want your app to work offline and load faster, you can change
 // // unregister() to register() below. Note this comes with some pitfalls.
