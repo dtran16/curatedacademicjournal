@@ -17,8 +17,7 @@ import Upload from "./containers/upload";
 import PaperForm from './containers/paperForm'
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
-
+  state = { storageValue: 0, web3: null, accounts: null, contractHelper: null, count: 0};
   componentDidMount = async () => {
     try {
       // Get network provider and web3 instance.
@@ -32,7 +31,9 @@ class App extends Component {
 
       //create contract helper class
       const contractHelper = new ContractHelper(web3, networkId, accounts);
-
+      this.setState({count: this.state.count + 1});
+      console.log("count", this.state.count);
+      //await contractHelper.sample();
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       this.setState({ web3, accounts, contractHelper: contractHelper}, this.runExample);

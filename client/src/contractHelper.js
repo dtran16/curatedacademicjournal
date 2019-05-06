@@ -11,7 +11,7 @@ class ContractHelper {
         this.decimals = 10**18;
         const reviewDeployedNetwork = ReviewContract.networks[networkId];
         const tokenDeployedNetwork = TokenContract.networks[networkId];
-        
+
         this.reviewContract = new web3.eth.Contract(
             ReviewContract.abi,
             reviewDeployedNetwork && reviewDeployedNetwork.address,
@@ -34,7 +34,11 @@ class ContractHelper {
 
     //get the next paper id to be assigned
     currentId = async () => {
-        return await this.reviewContract.methods.getCurrentID().call();
+        let response = await this.reviewContract.methods.getCurrentID().call();
+        return response.toNumber();
+    }
+    sample = async () => {
+        return await this.reviewContract.methods.sample().send({from: this.accounts[0]});
     }
 
     //check if a paper exists

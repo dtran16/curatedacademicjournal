@@ -9,4 +9,5 @@ module.exports = async (deployer) => {
   let instanceT = await Token.deployed();
   await instanceR.setContract(instanceT.address);
   await instanceT.setContract(instanceR.address);
+
 };

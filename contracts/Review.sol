@@ -73,6 +73,39 @@ contract Review {
         verifiedUsers[devAddress] = true;
         // impliment some sort of limit on staking tokens
         //tokenContract = CAJCoin(coinAddr);
+
+
+    }
+
+    function sample () public returns (bool) {
+        string memory _title = "Towards the Automatic Anime Characters Creation with Generative Adversarial Networks";
+        string memory _location = "";
+        string[] memory _tags;
+        _tags[0] = "anime";
+        _tags[1] = "deep learning";
+        string memory _authorNameCreds = "Yanghua Jin, Jiakai Zhang, Minjun Li, Yingtao Tian, Huachun Zhu, Zhihao Fang";
+        uint256 _prevId = 0;
+        addPaper(_title, _location, _tags, _authorNameCreds, _prevId);
+
+        _title = "Style Transfer for Anime Sketches with Enhanced Residual U-net and Auxiliary Classifier GAN";
+        _location = "";
+        string[] memory t;
+        t[0] = "anime";
+        t[1] = "deep learning";
+        _authorNameCreds = "Lvmin Zhang, Yi Ji, Xin Lin";
+        _prevId = 0;
+        addPaper(_title, _location, t, _authorNameCreds, _prevId);
+
+
+       _title = "User-Guided Deep Anime Line Art Colorization with Conditional Adversarial Networks";
+       _location = "";
+       string[] memory more;
+       more[0] = "anime";
+       more[1] = "deep learning";
+       _authorNameCreds = "Yuanzheng Ci, Xinzhu Ma, Zhihui Wang, Haojie Li, Zhongxuan Luo";
+       _prevId = 0;
+       addPaper(_title, _location, more, _authorNameCreds, _prevId);
+       return true;
     }
 
     //getter for current ID; actually the next id to be assigned
