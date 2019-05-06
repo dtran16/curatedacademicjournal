@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import SimpleStorageContract from "./contracts/SimpleStorage.json";
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import getWeb3 from "./utils/getWeb3";
 import ReviewContract from "./contracts/Review.json";
 import ContractHelper from "./contractHelper"
@@ -10,8 +10,8 @@ import "./styles/App.css";
 //containers
 import Temp from './containers/temp';
 import Landing from "./containers/landing";
-import ArticleProfile from "./containers/articleProfile";
-import Form from "./containers/components/Form/form"
+import ArticleProfile from './containers/articleProfile';
+import PaperForm from './containers/paperForm'
 
 class App extends Component {
   state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
@@ -57,17 +57,54 @@ class App extends Component {
     // this.setState({storageValue: response });
   };
 
+  
+
   render() {
+    // const routing = (
+    //   <Router>
+    //       <div>
+    //           <ul>
+    //               <li><Link to="/">default</Link></li>
+    //               <li><Link to="/landing">landing</Link></li>
+    //               <li><Link to="/articleprofile">articleProfile</Link></li>
+    //               <li><Link to="/form">paperForm</Link></li>
+    //           </ul>
+    //           <Route exact path="/" component={Temp} />
+    //           <Route path="/landing" component={Landing} />
+    //           <Route path="/articleprofile" component={ArticleProfile} />
+    //           {/* <Route path="/form" component={PaperForm} /> */}
+    //       </div>
+    //   </Router>
+    // )
+    
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
     return (
-      <Temp />
+      // <Temp />
       // <Landing val={this.state.storageValue} accounts={this.state.accounts} helper={this.state.contractHelper}/>
       // <ArticleProfile accounts={this.state.accounts} helper={this.state.contractHelper}/>
-      // <Form accounts={this.state.accounts} helper={this.state.contractHelper}/>
+      // <PaperForm accounts={this.state.accounts} helper={this.state.contractHelper}/>
+        routing
       );
   }
 }
 
 export default App;
+
+const routing = (
+  <Router>
+      <div>
+          <ul>
+              <li><Link to="/">default</Link></li>
+              <li><Link to="/landing">landing</Link></li>
+              <li><Link to="/articleprofile">articleProfile</Link></li>
+              <li><Link to="/form">paperForm</Link></li>
+          </ul>
+          <Route exact path="/" component={Temp} />
+          <Route path="/landing" component={Landing} />
+          <Route path="/articleprofile" component={ArticleProfile} />
+          <Route path="/form" component={PaperForm} />
+      </div>
+  </Router>
+)

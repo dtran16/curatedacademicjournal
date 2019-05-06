@@ -36,8 +36,8 @@ class Recommendation extends React.Component {
         return(
             <div className='itemContainer'>
                 <div className="itemHeader">
-                    <h2>{this.props.title}</h2>
-                    <p>{this.props.date}</p>
+                    <div className="recTitle">{this.props.title}</div>
+                    <div className="recDate">{this.props.date}</div>
                     <div className='pressItem'>
                         <img onClick={toggleFav}
                             src={favorite}

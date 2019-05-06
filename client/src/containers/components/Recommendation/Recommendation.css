@@ -1,8 +1,16 @@
-h1, h2, p {
+.recTitle, .recDate {
     font-family: 'Proxima Nova', sans-serif;
-    font-weight:normal;
+    font-weight: normal;
+    color: #26273D;
 }
 
+.recTitle {
+    font-size: 24px;
+}
+
+.recDate {
+    font-size: 18px;
+}
 
 
 .itemContainer {

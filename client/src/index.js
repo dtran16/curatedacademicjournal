@@ -10,24 +10,24 @@ import PaperForm from './containers/paperForm'
 
 import * as serviceWorker from './serviceWorker';
 
-const routing = (
-    <Router>
-        <div>
-            <ul>
-                <li><Link to="/">default</Link></li>
-                <li><Link to="/landing">landing</Link></li>
-                <li><Link to="/articleprofile">articleProfile</Link></li>
-                <li><Link to="/form">paperForm</Link></li>
-            </ul>
-            <Route exact path="/" component={App} />
-            <Route path="/landing" component={Landing} render={()=><Landing helper={100}/>}/>
-            <Route path="/articleprofile" component={ArticleProfile} />
-            <Route path="/form" component={PaperForm} />
-        </div>
-    </Router>
-)
+// const routing = (
+//     <Router>
+//         <div>
+//             <ul>
+//                 <li><Link to="/">default</Link></li>
+//                 <li><Link to="/landing">landing</Link></li>
+//                 <li><Link to="/articleprofile">articleProfile</Link></li>
+//                 <li><Link to="/form">paperForm</Link></li>
+//             </ul>
+//             <Route exact path="/" component={App} />
+//             <Route path="/landing" component={Landing} render={()=><Landing helper={100}/>}/>
+//             <Route path="/articleprofile" component={ArticleProfile} />
+//             <Route path="/form" component={PaperForm} />
+//         </div>
+//     </Router>
+// )
 
-ReactDOM.render(routing, document.getElementById('root'));
+ReactDOM.render(App, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
