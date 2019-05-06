@@ -35,9 +35,9 @@ class Paper extends React.Component {
                     <p>{this.props.citation}</p>
                 </div>
 
-                <div className="addReview" onClick={handleReviewClick}>
+                <a className="addReview" onClick={handleReviewClick} href="http://localhost:3000/form">
                     + My Review
-                </div>
+                </a>
             </div>
         )
     }

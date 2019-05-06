@@ -14,7 +14,7 @@ class Navbar extends Component {
             <div className="rowContainer">
                 <div className="logoName leftAnchor" onClick={() => get(this.Props.accounts, this.Props.helper)}>Indelve</div>
                 <div className="rightAnchor">
-                    <div className="upload">upload</div>
+                    <a className="upload" href="http://localhost:3000/upload">upload</a>
                     <div className="profile" >
                     <a href="http://www.yahoo.com">
                         <img src={profile}

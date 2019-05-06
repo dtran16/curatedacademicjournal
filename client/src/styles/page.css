@@ -9,3 +9,19 @@
     margin: auto;
     padding-top:50px;
 }
+
+.clickItem:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+a:visited {
+    color:inherit;
+}

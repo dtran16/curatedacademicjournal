@@ -29,13 +29,13 @@ class Search extends React.Component {
           <div className="searchLegend">
             <div id="recc">recommended</div>
             <div className="endAnchor">
-              <div className="filter" id="justify">Subject
+              <div className="filter clickItem" id="justify">Subject
                 <img src={down}
                   alt="Search"
                   height="20px"
                   width="20px"/>
               </div>
-              <div className="filter">Sort By
+              <div className="filter clickItem">Sort By
                 <img src={down}
                   alt="Search"
                   height="20px"
