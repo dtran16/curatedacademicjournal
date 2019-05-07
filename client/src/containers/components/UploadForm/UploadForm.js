@@ -90,8 +90,8 @@ class UploadForm extends Component {
     }
 }
 async function handleSubmit(state) {
-    if (state.authorName == null || state.title == null || 
-        state.tags == null || state.previousId == null || 
+    if (state.authorName == null || state.title == null ||
+        state.tags == null || state.previousId == null ||
         state.location == null) {
         alert("No fields can be left blank!");
         return;
@@ -104,6 +104,6 @@ async function handleSubmit(state) {
 
     await state.helper.addPaper(state.title, state.location, state.tags, state.authorName, state.previousId);
     alert("Paper Uploaded" + state.helper.getPaper(1).title)
-    
+
 }
 export default UploadForm;

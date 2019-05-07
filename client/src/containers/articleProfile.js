@@ -22,17 +22,18 @@ class ArticleProfile extends React.Component {
     //props above should be pulled from account info, but temp placed info for frontend dev
 
     render(props) {
-        let {accounts, helper} = this.props
+        let {accounts, helper, id, title, author} = this.props;
         if(accounts === undefined || helper == undefined){
           console.log('undefined props')
         } else {
           console.log('defined props')
         }
+        console.log(title);
         return(
             <div>
                 <Navbar accounts={this.props.accounts} helper={this.props.helper}/>
                 <Sidebar rating='' myRating='' review=''/>
-                <Paper title='Metabolism in the Heart'
+                <Paper title="Metabolism in the Heart"
                         authors='Emily White, Jane Moffit'
                         bio='m dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut ...m dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore '
                         citation=''/>

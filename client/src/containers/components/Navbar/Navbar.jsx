@@ -9,6 +9,7 @@ import bookMark from './bookmark.png';
 const Navbar = (Props) => {
     return (
         <div className="rowContainer">
+<<<<<<< HEAD
             <div className="logoContainer">
                 <div className="tokenTap" onClick={() => get(Props.accounts, Props.helper)}>
                     <img src={bookMark}
@@ -18,8 +19,11 @@ const Navbar = (Props) => {
                 </div>
                 <div className="logoName leftAnchor"><Link to="/">Indelve</Link></div>
             </div>
+=======
+            <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}><Link to="/landing">Indelve</Link></div>
+>>>>>>> page-routing2
             <div className="rightAnchor">
-                <div className="upload"><Link to="/upload">upload</Link></div>
+                <div className="upload"><Link to="/">upload</Link></div>
                 <div className="profile" >
                 <a href="http://www.yahoo.com">
                     <img src={profile}
@@ -30,11 +34,12 @@ const Navbar = (Props) => {
             </div>
             </div>
         </div>
-    )   
+    )
 }
 
 async function get(acct, helper) {
-
+    let id = await helper.currentId();
+    console.log("nav id", id);
     // Stores a given value, 5 by default.
     // await helper.methods.set(2).send({ from: acct[0] });
 

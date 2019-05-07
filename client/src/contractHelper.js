@@ -11,7 +11,7 @@ class ContractHelper {
         this.decimals = 10**18;
         const reviewDeployedNetwork = ReviewContract.networks[networkId];
         const tokenDeployedNetwork = TokenContract.networks[networkId];
-        
+
         this.reviewContract = new web3.eth.Contract(
             ReviewContract.abi,
             reviewDeployedNetwork && reviewDeployedNetwork.address,
@@ -34,7 +34,8 @@ class ContractHelper {
 
     //get the next paper id to be assigned
     currentId = async () => {
-        return await this.reviewContract.methods.getCurrentID().call();
+        let res = await this.reviewContract.methods.getCurrentID().call();
+        return res.toNumber();
     }
 
     //check if a paper exists
@@ -52,19 +53,19 @@ class ContractHelper {
         if(!this.paperExists(id)) {
             return null;
         }
-        const location = this.reviewContract.methods.getPaperLocation(id).call();
-        const title = this.reviewContract.methods.getPaperTitle(id).call();
-        const numTokens = this.reviewContract.methods.getNumTokens(id).call();
-        const tags = this.reviewContract.methods.getPaperTags(id).call();
-        const authorAddress = this.reviewContract.methods.getPaperAuthor(id).call();
-        const authorName = this.reviewContract.methods.getPaperAuthorName(id).call();
-        const prevId = this.reviewContract.methods.getPaperPrevId(id).call();
-        const nextId = this.reviewContract.methods.getPaperNextId(id).call();
-        const state = this.reviewContract.methods.getPaperState(id).call();
-        const scores = this.reviewContract.methods.getPaperVotes(id).call();
+        const location = await this.reviewContract.methods.getPaperLocation(id).call();
+        const title = await this.reviewContract.methods.getPaperTitle(id).call();
+        const numTokens = await this.reviewContract.methods.getNumTokens(id).call();
+        const tags = await this.reviewContract.methods.getPaperTags(id).call();
+        const authorAddress = await this.reviewContract.methods.getPaperAuthor(id).call();
+        const authorName = await this.reviewContract.methods.getPaperAuthorName(id).call();
+        const prevId = await this.reviewContract.methods.getPaperPrevId(id).call();
+        const nextId = await this.reviewContract.methods.getPaperNextId(id).call();
+        const state = await this.reviewContract.methods.getPaperState(id).call();
+        const scores = await this.reviewContract.methods.getPaperVotes(id).call();
         const userScore = scores[0] / scores[1];
         const reviewerScore = scores[2] / scores[3];
-        const date = this.reviewContract.methods.getPaperDate(id).call();
+        const date = await this.reviewContract.methods.getPaperDate(id).call();
         return new Paper(id, location, title, numTokens, tags, authorAddress, authorName,
                         prevId, nextId, state, userScore, reviewerScore, date);
     }
