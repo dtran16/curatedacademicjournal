@@ -71,9 +71,72 @@ contract Review {
         currentId = 1;
         devAddress = msg.sender;
         verifiedUsers[devAddress] = true;
-        // impliment some sort of limit on staking tokens
-        //tokenContract = CAJCoin(coinAddr);
+        /* string memory _title = "Sample Paper 1";
+        string memory _location = "";
+        string[] memory _tags;
+        _tags[0] = "anime";
+        _tags[1] = "deep learning";
+        string memory _authorNameCreds = "Joe Broder";
+        uint256 _prevId = 0;
+        //papers[1] = Paper(currentId, _location, _title, _tags, new string[](0), msg.sender, _authorNameCreds, _prevId, 0, 0, 0, 0, 0, 0, block.timestamp);
+        verifiedUsers[devAddress] = true;
+        currentId++;
+
+        string memory yeet1 = "Sample Paper 2";
+        string memory yeet2 = "";
+        string[] memory t;
+        t[0] = "anime";
+        t[1] = "deep learning";
+        string memory yeet3 = "Olivia Lee";
+        uint256 yeet4 = 0;
+        //papers[2] = Paper(currentId, yeet2, yeet1, t, new string[](0), msg.sender, yeet3, yeet4, 0, 0, 0, 0, 0, 0, block.timestamp);
+        currentId++;
+
+       string memory one = "Sample Paper 3";
+       string memory two = "";
+       string[] memory more;
+       more[0] = "anime";
+       more[1] = "deep learning";
+       string memory three = "Jen Hu, Susan Lin";
+       uint256 four = 0;
+       //papers[3] = Paper(currentId, two, one, more, new string[](0), msg.sender, three, four, 0, 0, 0, 0, 0, 0, block.timestamp);
+       currentId++; */
+
     }
+
+    function sample () public returns (bool) {
+        string memory _title = "Sample Paper 1";
+        string memory _location = "";
+        string[] memory _tags;
+        _tags[0] = "anime";
+        _tags[1] = "deep learning";
+        string memory _authorNameCreds = "Joe Broder";
+        uint256 _prevId = 0;
+        papers[1] = Paper(currentId, _location, _title, _tags, new string[](0), msg.sender, _authorNameCreds, _prevId, 0, 0, 0, 0, 0, 0, block.timestamp);
+        currentId++;
+
+        string memory yeet1 = "Sample Paper 2";
+        string memory yeet2 = "";
+        string[] memory t;
+        t[0] = "anime";
+        t[1] = "deep learning";
+        string memory yeet3 = "Olivia Lee";
+        uint256 yeet4 = 0;
+        papers[2] = Paper(currentId, yeet2, yeet1, t, new string[](0), msg.sender, yeet3, yeet4, 0, 0, 0, 0, 0, 0, block.timestamp);
+        currentId++;
+
+       string memory one = "Sample Paper 3";
+       string memory two = "";
+       string[] memory more;
+       more[0] = "anime";
+       more[1] = "deep learning";
+       string memory three = "Jen Hu, Susan Lin";
+       uint256 four = 0;
+       papers[3] = Paper(currentId, two, one, more, new string[](0), msg.sender, three, four, 0, 0, 0, 0, 0, 0, block.timestamp);
+       currentId++;
+       return true;
+    }
+
 
     //getter for current ID; actually the next id to be assigned
     function getCurrentID() public returns (uint256 id) {

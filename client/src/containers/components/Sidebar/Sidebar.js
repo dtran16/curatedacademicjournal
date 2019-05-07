@@ -10,7 +10,7 @@ import down from './down.png';
 function Sidebar() {
     return(
         <div className="sidebarContainer">
-            <Link to="/">
+            <Link to="/landing">
                 <div className="returnContainer">
                     <img
                         src={leftArrow}
