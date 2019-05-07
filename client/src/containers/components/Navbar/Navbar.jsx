@@ -32,8 +32,8 @@ async function get(acct, helper) {
 
     // Get the value from the contract to prove it worked.
     //const response = await contractHelper.currentId();
-    //await helper.getTokens();
-    //const response = await helper.getUserBalance();
+    await helper.getTokens();
+    const response = await helper.getUserBalance();
 
     // send state back to the parent
 }

@@ -33,7 +33,7 @@ class ArticleProfile extends React.Component {
             <div>
                 <Navbar accounts={this.props.accounts} helper={this.props.helper}/>
                 <Sidebar rating='' myRating='' review=''/>
-                <Paper title={this.props.title}
+                <Paper title="Metabolism in the Heart"
                         authors='Emily White, Jane Moffit'
                         bio='m dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut ...m dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore '
                         citation=''/>

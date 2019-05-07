@@ -37,7 +37,7 @@ class Recommendation extends React.Component {
             // console.log(this.props.saved);
             console.log("clicked bookmark")
         }
-        console.log("title", this.props.title);
+        console.log("title", this.props.paper);
         return(
             <div className='itemContainer'>
                 <div className="itemHeader">
@@ -58,9 +58,7 @@ class Recommendation extends React.Component {
                 </div>
                 <div className='authors'>{this.props.authorName}</div>
                 <Router>
-                    <div>
                     <Route path="/articleprofile" render={(Props) => <ArticleProfile accounts={this.props.accounts} helper={this.props.helper} id= {this.props.paper} title={this.props.title} author= {this.props.authors} {...Props}/>}/>
-                    </div>
                 </Router>
             </div>
         )
