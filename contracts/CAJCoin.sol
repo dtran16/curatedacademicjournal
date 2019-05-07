@@ -140,8 +140,8 @@ contract CAJCoin {
         }
         if (paperCanRecive(_to, _amount)
             && msg.sender == caddr) {
-            balances[_from] = balances[_from].sub(_amount);
-            paperBalances[_to] = paperBalances[_to].add(_amount);
+            balances[_from] = balances[_from].sub(_amount * 10**uint(decimals));
+            paperBalances[_to] = paperBalances[_to].add(_amount * 10**uint(decimals));
             userTokensStaked[_to][_from] += _amount;
 
             return true;

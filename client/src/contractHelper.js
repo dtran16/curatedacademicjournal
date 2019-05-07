@@ -66,8 +66,10 @@ class ContractHelper {
         const userScore = scores[0] / scores[1];
         const reviewerScore = scores[2] / scores[3];
         const date = await this.reviewContract.methods.getPaperDate(id).call();
-        return new Paper(id, location, title, numTokens, tags, authorAddress, authorName,
-                        prevId, nextId, state, userScore, reviewerScore, date);
+        let val = numTokens / this.decimals;
+        let res = Math.round(userScore*100)/100;
+        return new Paper(id, location, title, val, tags, authorAddress, authorName,
+                        prevId, nextId, state, res, reviewerScore, date);
     }
 
     //sign up as a verified user for a paper
@@ -102,6 +104,7 @@ class ContractHelper {
 
     //user votes on a paper and stakes tokens
     userVoteOnPaper = async (id, vote, amount) => {
+
         return await this.reviewContract.methods.userVoteOnPaper(id, vote, amount).send({from: this.accounts[0]});
     }
 

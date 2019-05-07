@@ -7,13 +7,22 @@ import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 
 class PaperForm extends React.Component {
-    state = { storageValue: 0, web3: null, accounts: null, contractHelper: null };
+    state = { storageValue: 0, web3: null, accounts: null, contractHelper: null, title: null, author: null, id: null};
     constructor(props) {
       super(props);
 
     }
 
-    componentDidMount = async (nextProps) => {
+    componentDidMount = async (props) => {
+
+        if (this.props.location.state === undefined) {
+            console.log('yee');
+        } else {
+            let {title, author, id} = this.props.location.state;
+            console.log("titleyee", title);
+            this.setState({title: title, author: author, id: id});
+        }
+
         // console.log("why");
         // try {
         //   // Get network provider and web3 instance.
@@ -43,20 +52,21 @@ class PaperForm extends React.Component {
 
 
     render(props) {
-        let {accounts, helper} = this.props
-        if(accounts === undefined || helper == undefined){
+        //let {title, author, id} = this.props.location.state;
+        if(this.props.accounts === undefined || this.props.helper == undefined){
           console.log('undefined props')
         } else {
           console.log('defined props')
         }
         return(
             <div>
-                <Navbar accounts={accounts} helper={helper} />
-                <Form 
-                  accounts={accounts} 
-                  helper={helper} 
-                  title="Metabolism in the Heart"
-                  authors="Emily White, Jane Moffit"/>
+                <Navbar accounts={this.props.accounts} helper={this.props.helper} />
+                <Form
+                  accounts={this.props.accounts}
+                  helper={this.props.helper}
+                  title={this.state.title}
+                  authors={this.state.author}
+                  id={this.state.id}/>
                 <Footer />
             </div>
         )

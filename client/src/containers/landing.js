@@ -24,7 +24,13 @@ class Landing extends React.Component {
           id3: 3,
           paper1: null,
           paper2: null,
-          paper3: null
+          paper3: null,
+          balance1: 0,
+          balance2: 0,
+          balance3: 0,
+          score1: 0,
+          score2: 0,
+          score3: 0
       };
   constructor(props) {
     super(props);
@@ -39,17 +45,17 @@ class Landing extends React.Component {
         let id = await contractHelper.currentId();
         // console.log("other id", id);
         let p1 = await contractHelper.getPaper(id - 1);
-        console.log(p1.title);
-        this.setState({ title1: p1.title, author1: p1.authorName, id1: id-1, paper1: p1});
+
+        this.setState({ title1: p1.title, author1: p1.authorName, id1: id-1, paper1: p1, balance1: p1.numtokens, score1: p1.userScore});
 
       // let id = await helper.currentId();
       // console.log("other id", id);
       //
       //
       let p2 = await contractHelper.getPaper(id - 2);
-      this.setState({ title2: p2.title, author2: p2.authorName, id2: id-2, paper2: p2});
+      this.setState({ title2: p2.title, author2: p2.authorName, id2: id-2, paper2: p2, balance2: p2.numtokens, score2: p2.userScore});
       let p3 = await contractHelper.getPaper(id - 3);
-      this.setState({ title3: p3.title, author3: p3.authorName, id3: id-3, paper3: p3});
+      this.setState({ title3: p3.title, author3: p3.authorName, id3: id-3, paper3: p3, balance3: p3.numtokens, score3: p3.userScore});
 
   };
 
@@ -73,25 +79,31 @@ class Landing extends React.Component {
           saved='false'
           paper={this.state.id1}
           helper={helper}
-          accounts={accounts}/>
+          accounts={accounts}
+          balance={this.state.balance1}
+          score={this.state.score1}/>
       <Recommendation
           title={this.state.title2}
           date='April 21, 2019'
           authors={this.state.author2}
           fav='false'
-          saved='true'
+          saved='false'
           paper={this.state.id2}
           helper={helper}
-          accounts={accounts}/>
+          accounts={accounts}
+           balance={this.state.balance2}
+           score={this.state.score2}/>
       <Recommendation
           title={this.state.title3}
           date='April 21, 2019'
           authors={this.state.author3}
-          fav='true'
+          fav='false'
           saved='false'
           paper={this.state.id3}
           helper={helper}
-          accounts={accounts}/>
+          accounts={accounts}
+           balance={this.state.balance3}
+           score={this.state.score3}/>
       <Footer />
     </div>
     )
