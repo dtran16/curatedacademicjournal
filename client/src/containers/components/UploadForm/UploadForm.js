@@ -53,30 +53,30 @@ class UploadForm extends Component {
           <div className="bodyContainer">
             <h1 id="uploadTitle">Upload</h1>
             <div id="form">
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} id="form">
                     <label>
                       Name
-                      <input type="text" value = {this.state.authorName} onChange = {this.handleChangeName}/>
+                      <input id="name" type="text" value = {this.state.authorName} onChange = {this.handleChangeName}/>
                     </label>
                     <label>
                         Title
-                      <input type="text" value = {this.state.title} onChange = {this.handleChangeTitle} />
+                      <input id="title" type="text" value = {this.state.title} onChange = {this.handleChangeTitle} />
                     </label>
                     <label>
                         Tags (comma seperated list)
-                      <input type="text" value = {this.state.tags} onChange = {this.handleChangeTags} />
+                      <input id="tags" type="text" value = {this.state.tags} onChange = {this.handleChangeTags} />
                     </label>
                     <label>
                         Previous Paper ID (0 if none)
-                      <input type="text"  value = {this.state.previousId} onChange = {this.handleChangePrevId} />
+                      <input id="id" type="text"  value = {this.state.previousId} onChange = {this.handleChangePrevId} />
                     </label>
                     <label>
                         Upload PDF
-                        <input id="file" type="file" value = {this.state.location} onChange = {this.handleChangeLocation}/>
+                        <input id="file" id="file" type="file" value = {this.state.location} onChange = {this.handleChangeLocation}/>
                     </label>
                     <label id="lastItem">
                         I verify that the above information is correct
-                        <input type="checkbox" value = {this.state.verify} onChange = {this.handleVerify}/>
+                        <input id="check" type="checkbox" value = {this.state.verify} onChange = {this.handleVerify}/>
                     </label>
                   </form>
                   <div className="rightAnchor">
@@ -90,6 +90,7 @@ class UploadForm extends Component {
     }
 }
 async function handleSubmit(state) {
+    
     if (state.authorName == null || state.title == null ||
         state.tags == null || state.previousId == null ||
         state.location == null) {

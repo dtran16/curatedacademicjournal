@@ -9,7 +9,6 @@ import bookMark from './bookmark.png';
 const Navbar = (Props) => {
     return (
         <div className="rowContainer">
-<<<<<<< HEAD
             <div className="logoContainer">
                 <div className="tokenTap" onClick={() => get(Props.accounts, Props.helper)}>
                     <img src={bookMark}
@@ -17,11 +16,8 @@ const Navbar = (Props) => {
                         height="45px"
                         width="45px"/>
                 </div>
-                <div className="logoName leftAnchor"><Link to="/">Indelve</Link></div>
+                <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}><Link to="/landing">Indelve</Link></div>
             </div>
-=======
-            <div className="logoName leftAnchor" onClick={() => get(Props.accounts, Props.helper)}><Link to="/landing">Indelve</Link></div>
->>>>>>> page-routing2
             <div className="rightAnchor">
                 <div className="upload"><Link to="/">upload</Link></div>
                 <div className="profile" >

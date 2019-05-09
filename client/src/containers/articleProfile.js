@@ -22,8 +22,8 @@ class ArticleProfile extends React.Component {
     //props above should be pulled from account info, but temp placed info for frontend dev
 
     render(props) {
-        let {accounts, helper, id, title, author} = this.props;
-        if(accounts === undefined || helper == undefined){
+        let {title, author, balance, id, score} = this.props.location.state;
+        if(this.props.helper === undefined || this.props.accounts == undefined){
           console.log('undefined props')
         } else {
           console.log('defined props')
@@ -33,10 +33,13 @@ class ArticleProfile extends React.Component {
             <div>
                 <Navbar accounts={this.props.accounts} helper={this.props.helper}/>
                 <Sidebar rating='' myRating='' review=''/>
-                <Paper title="Metabolism in the Heart"
-                        authors='Emily White, Jane Moffit'
+                <Paper title={title}
+                        authors={author}
                         bio='m dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut ...m dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore '
-                        citation=''/>
+                        citation=''
+                        balance={balance}
+                        id={id}
+                        score={score}/>
                 <Footer />
             </div>
         )

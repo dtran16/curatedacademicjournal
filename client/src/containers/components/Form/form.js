@@ -43,11 +43,14 @@ class Form extends Component {
     this.setState({comment: event.target.value});
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
+     event.preventDefault();
     console.log(this.state.rating, this.state.stake, this.state.comment);
-    //await this.state.helper.userVoteOnPaper([id], this.state.rating, this.state.stake);
-    //await this.state.helper.addComment([id], this.state.comment);
-    event.preventDefault();
+
+    await this.state.helper.userVoteOnPaper(this.props.id, this.state.rating, this.state.stake);
+    await this.state.helper.addComment(this.props.id, this.state.comment);
+
+
   }
 
   render() {

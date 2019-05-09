@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import ArticleProfile from "../../articleProfile";
+import {Link, BrowserRouter as Router } from 'react-router-dom';
+
 //styles
 import './Recommendation.css';
 import bMark from './bookmark.png';
@@ -37,11 +37,11 @@ class Recommendation extends React.Component {
             // console.log(this.props.saved);
             console.log("clicked bookmark")
         }
-        console.log("title", this.props.paper);
+
         return(
             <div className='itemContainer'>
                 <div className="itemHeader">
-                    <div className="recTitle"><Link to='/articleprofile'>{this.props.title}</Link></div>
+                    <div className="recTitle"><Link to={{ pathname: '/articleprofile', state: { title: this.props.title, author:this.props.authors, balance: this.props.balance, id: this.props.paper, score: this.props.score} }}>{this.props.title}</Link></div>
                     <div className="recDate">{this.props.date}</div>
                     <div className='pressItem'>
                         <img className="clickItem" onClick={toggleFav}
@@ -56,10 +56,7 @@ class Recommendation extends React.Component {
                             width="18px"/>
                     </div>
                 </div>
-                <div className='authors'>{this.props.authorName}</div>
-                <Router>
-                    <Route path="/articleprofile" render={(Props) => <ArticleProfile accounts={this.props.accounts} helper={this.props.helper} id= {this.props.paper} title={this.props.title} author= {this.props.authors} {...Props}/>}/>
-                </Router>
+                <div className='authors'>{this.props.authors}</div>
             </div>
         )
     }
